@@ -59,3 +59,12 @@ export type Options = {
   model?: string;
   format?: Format;
 };
+
+export type MessageDetails = {
+  name: string;
+  isNot?: boolean;
+  rule: string;
+  assessment: string;
+  content: string;
+  pass: boolean;
+};

@@ -1,18 +1,12 @@
 import { OpenAI } from "openai";
+import { MatcherHintOptions } from "jest-matcher-utils";
 
 import {
   makeOpenAIChatDeterminer,
   makeOpenAITextDeterminer,
 } from "./determiners.js";
 import { Determiner, MatchersFactory } from "./types.js";
-import {
-  MatcherHintOptions,
-  matcherErrorMessage,
-  matcherHint,
-  printExpected,
-  printReceived,
-  DIM_COLOR,
-} from "jest-matcher-utils";
+import { renderJestMessage } from "./messages.js";
 
 export const makeMatchers = (determine: Determiner) => {
   const matchers = {
@@ -21,28 +15,19 @@ export const makeMatchers = (determine: Determiner) => {
       recieved: string,
       expected: string
     ) {
+      const { isNot } = this;
+
+      const name = "toHeed";
+
       const content = recieved;
       const rule = expected;
 
-      const determination = await determine({ content, rule });
+      const { assessment, pass } = await determine({ content, rule });
 
-      const message = () => {
-        const hint = matcherHint("toHeed", undefined, "rule", {
-          isNot: this.isNot,
-          comment: this.isNot ? "Fails if rule is followed" : undefined,
-        });
-        const assembled = `${hint}\n\nRule: ${printExpected(
-          rule
-        )}\nReceived: ${printReceived(content)} ${DIM_COLOR(
-          `// ${determination.assessment}`
-        )}`;
-        return assembled;
-      };
+      const message = () =>
+        renderJestMessage({ assessment, pass, rule, content, name, isNot });
 
-      const matcher = {
-        pass: determination.pass,
-        message,
-      };
+      const matcher = { pass, message };
       return matcher;
     },
   };

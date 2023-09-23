@@ -4,15 +4,15 @@ import { extractDetermination } from "./parsers.js";
 import { renderMessages, renderPrompt } from "./renderers.js";
 import { Determiner, Options } from "./types.js";
 import {
-  makeOpenAiChatCompleter,
-  makeOpenAiTextCompleter,
-} from "./completers.js";
+  makeOpenAIChatCompleter,
+  makeOpenAITextCompleter,
+} from "./completers/completers.js";
 
 export function makeOpenAITextDeterminer(
   openai: OpenAI,
   options: Options = {}
 ): Determiner {
-  const complete = makeOpenAiTextCompleter(openai, options);
+  const complete = makeOpenAITextCompleter(openai, options);
 
   const determiner: Determiner = async ({ rule, content }) => {
     const prompt = renderPrompt({
@@ -32,7 +32,7 @@ export function makeOpenAIChatDeterminer(
   openai: OpenAI,
   options: Options = {}
 ): Determiner {
-  const complete = makeOpenAiChatCompleter(openai, options);
+  const complete = makeOpenAIChatCompleter(openai, options);
   const determine: Determiner = async ({ rule, content }) => {
     const messages = renderMessages({
       rule,

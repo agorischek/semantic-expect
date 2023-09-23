@@ -1,4 +1,4 @@
-# Semantic Expect
+# 🔡🤞 Semantic Expect
 
 LLM-based test assertions for Jest
 
@@ -24,5 +24,6 @@ test("Compliment generator", async () => {
 
 - Support LLM providers other than OpenAI
 - Support running a generator multiple times (e.g. `expect(randomCompliment).toHeedTimes("Be nice", 5)`)
+- Message formats for additional test runners
 - Test coverage
 - Docs
