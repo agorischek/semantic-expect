@@ -29,6 +29,7 @@ export const makeMatchers = (determine: Determiner) => {
       const message = () => {
         const hint = matcherHint("toHeed", undefined, "rule", {
           isNot: this.isNot,
+          comment: this.isNot ? "Fails if rule is followed" : undefined,
         });
         const assembled = `${hint}\n\nRule: ${printExpected(
           rule

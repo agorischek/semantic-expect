@@ -3,7 +3,7 @@
     "./src/**/*",
     "./dev/**/*",
     "jest.setup.ts",
-    "dev/example.test.ts"
+    "dev/failure-examples.ts.ts"
   ],
   "compilerOptions": {
     "outDir": "./dist/",

@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node --esm src/index.ts",
+    "start": "npm t dev",
     "test": "npm run test:jest",
     "test:jest": "jest",
     "test:vitest": "vitest"
