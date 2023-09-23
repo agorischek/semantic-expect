@@ -2,6 +2,6 @@ export {
   makeOpenAIChatMatchers,
   makeOpenAITextMatchers,
   makeOpenAIMatchers,
-} from "./matchers.js";
+} from "./matchers/openAI.js";
 
-export { Options } from "./types.js";
+export { Options } from "./types/options.js";

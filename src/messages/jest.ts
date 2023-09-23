@@ -5,7 +5,7 @@ import {
   DIM_COLOR,
 } from "jest-matcher-utils";
 
-import { MessageDetails } from "./types.js";
+import { ResultMessageDetails } from "../types/results.js";
 
 export const renderJestMessage = ({
   name,
@@ -13,7 +13,7 @@ export const renderJestMessage = ({
   rule,
   content,
   assessment,
-}: MessageDetails) => {
+}: ResultMessageDetails) => {
   const comment = isNot ? "Fails if rule is followed" : undefined;
   const hint = matcherHint(name, undefined, "rule", { isNot, comment });
 

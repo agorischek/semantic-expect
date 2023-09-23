@@ -1,5 +1,5 @@
 // import { describe, expect, it } from "vitest";
-import { renderPrompt } from "../renderers.js";
+import { renderPrompt } from "../renderers/prompt.js";
 
 describe("prompt renderers", () => {
   it.skip("renders a prompt", () => {

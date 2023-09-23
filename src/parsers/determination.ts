@@ -1,4 +1,4 @@
-import { DeterminationParser } from "./types.js";
+import { DeterminationParser } from "../types/determiners.js";
 
 export const extractDetermination: DeterminationParser = (
   completion: string

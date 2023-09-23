@@ -1,7 +1,8 @@
 import { OpenAI } from "openai";
 
-import { CompleterFactory, OpenAIMessage } from "../types.js";
-import { models } from "../defaults.js";
+import { CompleterFactory } from "../types/completers.js";
+import { OpenAIMessage } from "../types/messages.js";
+import { models } from "../defaults/models.js";
 
 export const makeOpenAIChatCompleter: CompleterFactory<
   OpenAI,

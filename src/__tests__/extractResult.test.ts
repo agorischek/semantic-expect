@@ -1,5 +1,5 @@
 // import { expect, it, describe } from "vitest";
-import { extractDetermination } from "../parsers.js";
+import { extractDetermination } from "../parsers/determination.js";
 
 describe("extractDetermination", () => {
   it.skip("extracts the result from a response", () => {
