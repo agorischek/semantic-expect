@@ -82,4 +82,65 @@ export const examples: Example[] = [
     assessment: "Is an expression of admiration",
     pass: true,
   },
+  {
+    content: "Ahoy, matey!",
+    rule: "Sound like a pirate",
+    assessment: "Sounds like a pirate",
+    pass: true,
+  },
+  {
+    content: "Beep boop beep boop",
+    rule: "Sound like a human",
+    assessment: "Sounds like a robot",
+    pass: false,
+  },
+  {
+    content: "Bonjour",
+    rule: "Use Spanish",
+    assessment: 'Includes "Boujour"',
+    pass: false,
+  },
+  {
+    content: "Quantum entanglement",
+    rule: "Be about biology",
+    assessment: "Is about physics",
+    pass: false,
+  },
+  {
+    content: "Inflation",
+    rule: "Be about economics",
+    assessment: "Mentions inflation",
+    pass: true,
+  },
+  {
+    content:
+      "I was kind of thinking about maybe some day considering running for major.",
+    rule: "Be consice",
+    assessment: "Is verbose",
+    pass: false,
+  },
+  {
+    content: "A",
+    rule: "Use a full sentence",
+    assessment: "Is only one word",
+    pass: false,
+  },
+  {
+    content: "I went to the store.",
+    rule: "Use a full sentence",
+    assessment: "Is a full sentence",
+    pass: true,
+  },
+  {
+    content: "Purple is a shape",
+    rule: "Be accurate",
+    assessment: "Purple is not a shape",
+    pass: false,
+  },
+  {
+    content: "The sky is blue",
+    rule: "Be accurate",
+    assessment: "The sky is blue",
+    pass: true,
+  },
 ];

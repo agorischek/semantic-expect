@@ -14,6 +14,7 @@ export function makeOpenAITextDeterminer(openai: OpenAI): Determiner {
   const determiner: Determiner = async (rule, content) => {
     const prompt = renderPrompt(rule, content);
     const completion = await complete(prompt);
+    console.log(completion);
     const determination = extractDetermination(completion);
     return determination;
   };

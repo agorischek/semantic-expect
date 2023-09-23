@@ -3,7 +3,7 @@ import {
   makeOpenAIChatDeterminer,
   makeOpenAITextDeterminer,
 } from "./determiners.js";
-import { Determiner, MatchersFactory } from "./types.js";
+import { Completer, Determiner, MatchersFactory } from "./types.js";
 
 export const makeMatchers = (determine: Determiner) => {
   const matchers = {
