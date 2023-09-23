@@ -3,9 +3,9 @@ import {
   printExpected,
   printReceived,
   DIM_COLOR,
-} from "jest-matcher-utils";
+} from 'jest-matcher-utils';
 
-import { ResultMessageDetails } from "../types/results.js";
+import type { ResultMessageDetails } from '../types/results.js';
 
 export const renderJestMessage = ({
   name,
@@ -14,12 +14,12 @@ export const renderJestMessage = ({
   content,
   assessment,
 }: ResultMessageDetails) => {
-  const comment = isNot ? "Fails if rule is followed" : undefined;
-  const hint = matcherHint(name, undefined, "rule", { isNot, comment });
+  const comment = isNot ? 'Fails if rule is followed' : undefined;
+  const hint = matcherHint(name, undefined, 'rule', { isNot, comment });
 
   const expectedLine = `Rule: ${printExpected(rule)}`;
   const receivedLine = `Received: ${printReceived(content)} ${DIM_COLOR(
-    `// ${assessment}`
+    `// ${assessment}`,
   )}`;
 
   const assembled = `${hint}\n\n${expectedLine}\n${receivedLine}`;

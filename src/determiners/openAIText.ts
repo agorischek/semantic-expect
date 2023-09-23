@@ -1,14 +1,14 @@
-import { OpenAI } from "openai";
+import { OpenAI } from 'openai';
 
-import { extractDetermination } from "../parsers/determination.js";
-import { renderPrompt } from "../renderers/prompt.js";
-import { Options } from "../types/options.js";
-import { Determiner } from "../types/determiners.js";
-import { makeOpenAITextCompleter } from "../completers/openAIText.js";
+import { extractDetermination } from '../parsers/determination.js';
+import { renderPrompt } from '../renderers/prompt.js';
+import { Options } from '../types/options.js';
+import { Determiner } from '../types/determiners.js';
+import { makeOpenAITextCompleter } from '../completers/openAIText.js';
 
 export function makeOpenAITextDeterminer(
   openai: OpenAI,
-  options: Options = {}
+  options: Options = {},
 ): Determiner {
   const complete = makeOpenAITextCompleter(openai, options);
 

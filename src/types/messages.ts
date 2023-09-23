@@ -1,4 +1,4 @@
 export type OpenAIMessage = {
-  role: "user" | "assistant" | "system";
+  role: 'user' | 'assistant' | 'system';
   content: string;
 };

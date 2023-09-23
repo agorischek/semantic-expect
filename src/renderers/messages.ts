@@ -1,9 +1,9 @@
-import { defaultInstructions } from "../prompting/instructions.js";
-import { Example } from "../types/examples.js";
-import { OpenAIMessage } from "../types/messages.js";
-import { buildExamples } from "./examples.js";
-import { renderInputMessage } from "./input.js";
-import { renderOutputMessage } from "./output.js";
+import { defaultInstructions } from '../prompting/instructions.js';
+import { Example } from '../types/examples.js';
+import { OpenAIMessage } from '../types/messages.js';
+import { buildExamples } from './examples.js';
+import { renderInputMessage } from './input.js';
+import { renderOutputMessage } from './output.js';
 
 export function renderMessages(details: {
   rule: string;
@@ -13,7 +13,7 @@ export function renderMessages(details: {
   const messages: OpenAIMessage[] = [];
 
   const systemMessage: OpenAIMessage = {
-    role: "system",
+    role: 'system',
     content: defaultInstructions,
   };
   messages.push(systemMessage);

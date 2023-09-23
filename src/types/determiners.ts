@@ -1,5 +1,5 @@
-import { Test } from "../types.js";
-import { Completer } from "./completers.js";
+import { Test } from '../types.js';
+import { Completer } from './completers.js';
 
 /** Parsed, unformatted information from LLM response */
 export type Determination = {

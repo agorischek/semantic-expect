@@ -1,5 +1,5 @@
-import { ExampleOutput } from "../types/examples.js";
-import { OpenAIMessage } from "../types/messages.js";
+import { ExampleOutput } from '../types/examples.js';
+import { OpenAIMessage } from '../types/messages.js';
 
 export function renderOutput(output: ExampleOutput): string {
   const rendered = `Assessment: ${output.assessment}\nResult: ${output.pass}`;
@@ -8,7 +8,7 @@ export function renderOutput(output: ExampleOutput): string {
 
 export function renderOutputMessage(output: ExampleOutput): OpenAIMessage {
   const message: OpenAIMessage = {
-    role: "assistant",
+    role: 'assistant',
     content: renderOutput(output),
   };
   return message;

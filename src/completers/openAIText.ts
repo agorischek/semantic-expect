@@ -1,11 +1,11 @@
-import { OpenAI } from "openai";
+import { OpenAI } from 'openai';
 
-import { CompleterFactory } from "./../types/completers.js";
-import { models } from "../defaults/models.js";
+import { CompleterFactory } from './../types/completers.js';
+import { models } from '../defaults/models.js';
 
 export const makeOpenAITextCompleter: CompleterFactory<OpenAI, string> = (
   openai,
-  options
+  options,
 ) => {
   const completer = async (prompt: string) => {
     const response = await openai.completions.create({

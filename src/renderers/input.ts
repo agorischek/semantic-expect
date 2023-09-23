@@ -1,5 +1,5 @@
-import { ExampleInput } from "../types/examples.js";
-import { OpenAIMessage } from "../types/messages.js";
+import { ExampleInput } from '../types/examples.js';
+import { OpenAIMessage } from '../types/messages.js';
 
 export function renderInput(input: ExampleInput): string {
   const rendered = `Content: ${input.content}\nRule: ${input.rule}`;
@@ -8,7 +8,7 @@ export function renderInput(input: ExampleInput): string {
 
 export function renderInputMessage(input: ExampleInput): OpenAIMessage {
   const message: OpenAIMessage = {
-    role: "user",
+    role: 'user',
     content: renderInput(input),
   };
   return message;

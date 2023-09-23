@@ -1,19 +1,19 @@
-import { MatcherHintOptions } from "jest-matcher-utils";
+import { MatcherHintOptions } from 'jest-matcher-utils';
 
-import { Format } from "../types/options.js";
-import { Determiner } from "../types/determiners.js";
-import { renderMessage } from "../messages/message.js";
+import { Format } from '../types/options.js';
+import { Determiner } from '../types/determiners.js';
+import { renderMessage } from '../messages/message.js';
 
 export const makeMatchers = (determine: Determiner, format: Format) => {
   const matchers = {
     toHeed: async function (
       this: MatcherHintOptions,
       recieved: string,
-      expected: string
+      expected: string,
     ) {
       const { isNot } = this;
 
-      const name = "toHeed";
+      const name = 'toHeed';
 
       const content = recieved;
       const rule = expected;

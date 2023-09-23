@@ -1,6 +1,6 @@
-import { Example } from "./examples.js";
+import { Example } from './examples.js';
 
-export type Format = "jest";
+export type Format = 'jest';
 
 export type Options = {
   examples?: Example[];
