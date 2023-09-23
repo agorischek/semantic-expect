@@ -1,11 +1,11 @@
-import { describe, expect, it } from "vitest";
+// import { describe, expect, it } from "vitest";
 import { renderPrompt } from "../renderers.js";
 
 describe("prompt renderers", () => {
   it("renders a prompt", () => {
     const content = "Red";
     const rule = "Must be a color";
-    const prompt = renderPrompt(rule, content);
+    const prompt = renderPrompt({ rule, content });
     expect(prompt).toMatchInlineSnapshot(`
       "Instructions: You accept content and a rule. You provide an assessment of whether the content passes the rule, then indicate that Pass is either \`true\` (passes) or \`false\` (fails).
 

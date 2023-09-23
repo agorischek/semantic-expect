@@ -8,3 +8,13 @@ declare module "vitest" {
   interface Assertion<T = any> extends CustomMatchers<T> {}
   interface AsymmetricMatchersContaining extends CustomMatchers {}
 }
+
+export {};
+
+declare global {
+  namespace jest {
+    interface Matchers<R> {
+      toHeed(rule: string): Promise<R>;
+    }
+  }
+}

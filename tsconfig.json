@@ -1,9 +1,10 @@
 {
-  "include": ["./src/**/*"],
+  "include": ["./src/**/*", "jest.setup.ts"],
   "compilerOptions": {
     "outDir": "./dist/",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "target": "ESNext"
+    "target": "ESNext",
+    "esModuleInterop": true
   }
 }
