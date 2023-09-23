@@ -173,4 +173,16 @@ export const defaultExamples: Example[] = [
     assessment: "Only mentions water",
     pass: false,
   },
+  {
+    content: "One, two, three",
+    rule: "Get to four",
+    assessment: "Stops at three",
+    pass: false,
+  },
+  {
+    content: "One, two, three, four, five",
+    rule: "Get to at least four",
+    assessment: "Gets to five",
+    pass: true,
+  },
 ];
