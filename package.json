@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@jest/types": "^29.6.3",
+    "jest-matcher-utils": "^29.7.0",
     "openai": "^4.10.0"
   }
 }

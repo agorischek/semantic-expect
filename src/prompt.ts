@@ -1,14 +1,14 @@
 import "dotenv/config";
 import { OpenAI } from "openai";
 
-import { extractResult } from "./extractResult.js";
+import { extractDetermination } from "./parsers.js";
 import { examples } from "./examples.js";
 import { renderInputMessage, renderOutputMessage } from "./renderers.js";
-import { Result } from "./types.js";
+import { Determiner } from "./types.js";
 
 const openai = new OpenAI();
 
-export async function assess(rule: string, content: string): Promise<Result> {
+export const determine: Determiner = async (rule: string, content: string) => {
   const exampleMessages = examples.reduce((acc, example) => {
     acc.push(renderInputMessage(example));
     acc.push(renderOutputMessage(example));
@@ -27,7 +27,7 @@ export async function assess(rule: string, content: string): Promise<Result> {
 
   const completion = response.choices[0].message.content;
 
-  const result = extractResult(completion);
+  const result = extractDetermination(completion);
 
-  return result;
-}
+  return { pass: result.pass, message: result.message };
+};

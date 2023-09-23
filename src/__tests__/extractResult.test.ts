@@ -1,10 +1,10 @@
 import { expect, it, describe } from "vitest";
-import { extractResult } from "../extractResult.js";
+import { extractDetermination } from "../parsers.js";
 
-describe("extractResult", () => {
+describe("extractDetermination", () => {
   it("extracts the result from a response", () => {
     const response = `Assessment: Expresses happy sentiment\nResult: true`;
-    const result = extractResult(response);
+    const result = extractDetermination(response);
 
     expect(result).toEqual({
       message: "Expresses happy sentiment",

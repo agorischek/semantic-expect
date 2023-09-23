@@ -1,7 +1,6 @@
 {
+  "include": ["./src/**/*"],
   "compilerOptions": {
-    "sourceRoot": "./src/",
-    "sourceMap": true,
     "outDir": "./dist/",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
