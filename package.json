@@ -1,0 +1,35 @@
+{
+  "name": "semantic-expect",
+  "version": "0.0.1",
+  "description": "LLM-based unit test assertions",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node --esm src/index.ts",
+    "test": "vitest"
+  },
+  "keywords": [
+    "unit",
+    "tests",
+    "llm",
+    "openai",
+    "jest",
+    "vitest",
+    "expect"
+  ],
+  "author": "Alex Gorischek",
+  "license": "MIT",
+  "devDependencies": {
+    "dotenv": "^16.3.1",
+    "eslint": "^8.50.0",
+    "prettier": "^3.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.5"
+  },
+  "dependencies": {
+    "@jest/types": "^29.6.3",
+    "openai": "^4.10.0"
+  }
+}
