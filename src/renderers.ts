@@ -5,11 +5,11 @@ import {
   OpenAIMessage,
 } from "./types.js";
 
-import { examples, instructions } from "./prompting.js";
+import { defaultExamples, defaultInstructions } from "./prompting.js";
 import OpenAI from "openai";
 
 export function renderInstructions(): string {
-  const rendered = `Instructions: ${instructions}`;
+  const rendered = `Instructions: ${defaultInstructions}`;
   return rendered;
 }
 
@@ -39,14 +39,20 @@ export function renderOutputMessage(output: ExampleOutput): OpenAIMessage {
   return message;
 }
 
-export function renderMessages(rule: string, content: string): OpenAIMessage[] {
+export function renderMessages(
+  rule: string,
+  content: string,
+  additionalExamples?: Example[]
+): OpenAIMessage[] {
   const messages: OpenAIMessage[] = [];
 
   const systemMessage: OpenAIMessage = {
     role: "system",
-    content: instructions,
+    content: defaultInstructions,
   };
   messages.push(systemMessage);
+
+  const examples = buildExamples(additionalExamples);
 
   const exampleMessages = examples.reduce((acc, example) => {
     acc.push(renderInputMessage(example));
@@ -74,7 +80,12 @@ export function renderExamples(examples: Example[]): string {
   return rendered;
 }
 
-export function renderPrompt(rule: string, content: string): string {
+export function renderPrompt(
+  rule: string,
+  content: string,
+  additionalExamples?: Example[]
+): string {
+  const examples = buildExamples(additionalExamples);
   const prompt = `${renderInstructions()}\n${renderExamples(
     examples
   )}\n${renderInput({
@@ -82,4 +93,11 @@ export function renderPrompt(rule: string, content: string): string {
     content,
   })}`;
   return prompt;
+}
+
+function buildExamples(additionalExamples?: Example[]): Example[] {
+  const examples = additionalExamples
+    ? [...defaultExamples, ...additionalExamples]
+    : defaultExamples;
+  return examples;
 }

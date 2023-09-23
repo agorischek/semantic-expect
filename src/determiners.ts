@@ -2,17 +2,20 @@ import { OpenAI } from "openai";
 
 import { extractDetermination } from "./parsers.js";
 import { renderMessages, renderPrompt } from "./renderers.js";
-import { Determiner } from "./types.js";
+import { Determiner, Options } from "./types.js";
 import {
   makeOpenAiChatCompleter,
   makeOpenAiTextCompleter,
 } from "./completers.js";
 
-export function makeOpenAITextDeterminer(openai: OpenAI): Determiner {
-  const complete = makeOpenAiTextCompleter(openai);
+export function makeOpenAITextDeterminer(
+  openai: OpenAI,
+  options: Options = {}
+): Determiner {
+  const complete = makeOpenAiTextCompleter(openai, options);
 
   const determiner: Determiner = async (rule, content) => {
-    const prompt = renderPrompt(rule, content);
+    const prompt = renderPrompt(rule, content, options.examples);
     const completion = await complete(prompt);
     console.log(completion);
     const determination = extractDetermination(completion);
@@ -22,11 +25,13 @@ export function makeOpenAITextDeterminer(openai: OpenAI): Determiner {
   return determiner;
 }
 
-export function makeOpenAIChatDeterminer(openai: OpenAI): Determiner {
-  const complete = makeOpenAiChatCompleter(openai);
-
+export function makeOpenAIChatDeterminer(
+  openai: OpenAI,
+  options: Options = {}
+): Determiner {
+  const complete = makeOpenAiChatCompleter(openai, options);
   const determine: Determiner = async (rule, content) => {
-    const messages = renderMessages(rule, content);
+    const messages = renderMessages(rule, content, options.examples);
     const completion = await complete(messages);
     const determination = extractDetermination(completion);
     return determination;

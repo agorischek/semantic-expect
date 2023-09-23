@@ -32,7 +32,10 @@ export type DeterminerFactory<T> = (completer: Completer<T>) => Determiner;
 
 export type Completer<T> = (prompt: T) => Promise<string>;
 
-export type CompleterFactory<T, U> = (model: T) => Completer<U>;
+export type CompleterFactory<T, U> = (
+  model: T,
+  options?: Options
+) => Completer<U>;
 
 export type OpenAIMessage = {
   role: "user" | "assistant" | "system";
@@ -45,4 +48,9 @@ export type Matchers = {
   toHeed: Matcher;
 };
 
-export type MatchersFactory<T> = (model: T) => Matchers;
+export type MatchersFactory<T> = (generator: T, options?: Options) => Matchers;
+
+export type Options = {
+  examples?: Example[];
+  model?: string;
+};

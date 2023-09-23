@@ -1,12 +1,15 @@
 import { CompleterFactory, OpenAIMessage } from "./types.js";
 import { OpenAI } from "openai";
 
+import { models } from "./defaults.js";
+
 export const makeOpenAiTextCompleter: CompleterFactory<OpenAI, string> = (
-  openai
+  openai,
+  options
 ) => {
   const completer = async (prompt: string) => {
     const response = await openai.completions.create({
-      model: "gpt-3.5-turbo-instruct",
+      model: options?.model ?? models.openAIText,
       prompt,
       temperature: 0,
       max_tokens: 100,
@@ -20,10 +23,10 @@ export const makeOpenAiTextCompleter: CompleterFactory<OpenAI, string> = (
 export const makeOpenAiChatCompleter: CompleterFactory<
   OpenAI,
   OpenAIMessage[]
-> = (openai) => {
+> = (openai, options) => {
   const completer = async (messages: OpenAIMessage[]) => {
     const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: options?.model ?? models.openAIChat,
       messages,
       temperature: 0,
       max_tokens: 100,

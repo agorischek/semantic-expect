@@ -9,7 +9,7 @@ const matchers = makeOpenAITextMatchers(new OpenAI());
 expect.extend(matchers);
 
 test("custom matcher test", async () => {
-  await expect("The sky is blue").toHeed("Be accurate.");
+  await expect("The sky is blue").toHeed("Be inaccurate.");
 });
 
 // test("messages", () => {

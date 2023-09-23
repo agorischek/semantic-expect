@@ -1,9 +1,9 @@
 import { Example } from "./types.js";
 
-export const instructions =
+export const defaultInstructions =
   "You accept content and a rule. You provide an assessment of whether the content passes the rule, then indicate that Pass is either `true` (passes) or `false` (fails).";
 
-export const examples: Example[] = [
+export const defaultExamples: Example[] = [
   {
     content: "I need to pick up bananas and bread.",
     rule: "Must mention a fruit",
@@ -142,5 +142,11 @@ export const examples: Example[] = [
     rule: "Be accurate",
     assessment: "The sky is blue",
     pass: true,
+  },
+  {
+    content: "The sky is blue",
+    rule: "Be inaccurate",
+    assessment: "The sky is blue",
+    pass: false,
   },
 ];
