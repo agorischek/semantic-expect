@@ -1,9 +1,14 @@
-export type Example = {
-  content: string;
+export type ExampleInput = {
   rule: string;
-  pass: boolean;
-  explanation: string;
+  content: string;
 };
+
+export type ExampleOutput = {
+  assessment: string;
+  pass: boolean;
+};
+
+export type Example = ExampleInput & ExampleOutput;
 
 export type Result = {
   pass: boolean;
@@ -33,3 +38,11 @@ export type OpenAIMessage = {
   role: "user" | "assistant" | "system";
   content: string;
 };
+
+export type Matcher = (recieved: string, expected: string) => Promise<Result>;
+
+export type Matchers = {
+  toHeed: Matcher;
+};
+
+export type MatchersFactory<T> = (model: T) => Matchers;
