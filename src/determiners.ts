@@ -21,7 +21,6 @@ export function makeOpenAITextDeterminer(
       additionalExamples: options.examples,
     });
     const completion = await complete(prompt);
-    console.log(completion);
     const determination = extractDetermination(completion);
     return determination;
   };

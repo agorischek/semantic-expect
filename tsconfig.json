@@ -1,5 +1,10 @@
 {
-  "include": ["./src/**/*", "jest.setup.ts"],
+  "include": [
+    "./src/**/*",
+    "./dev/**/*",
+    "jest.setup.ts",
+    "dev/example.test.ts"
+  ],
   "compilerOptions": {
     "outDir": "./dist/",
     "module": "NodeNext",

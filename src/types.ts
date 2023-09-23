@@ -23,7 +23,7 @@ export type Result = {
 /** Parsed, unformatted information from LLM response */
 export type Determination = {
   pass: boolean;
-  message: string;
+  assessment: string;
 };
 
 export type DeterminationParser = (response: string) => Determination;

@@ -27,18 +27,13 @@ export const makeMatchers = (determine: Determiner) => {
       const determination = await determine({ content, rule });
 
       const message = () => {
-        const name = "toHeed";
-        const options: MatcherHintOptions = {
-          // comment: "Must heed rule",
+        const hint = matcherHint("toHeed", undefined, "rule", {
           isNot: this.isNot,
-          promise: this.promise,
-        };
-        const hint = matcherHint(name, undefined, "rule", options);
-
+        });
         const assembled = `${hint}\n\nRule: ${printExpected(
           rule
         )}\nReceived: ${printReceived(content)} ${DIM_COLOR(
-          `// ${determination.message}`
+          `// ${determination.assessment}`
         )}`;
         return assembled;
       };
