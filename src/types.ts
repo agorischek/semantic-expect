@@ -52,7 +52,10 @@ export type Matchers = {
 
 export type MatchersFactory<T> = (generator: T, options?: Options) => Matchers;
 
+export type Format = "jest";
+
 export type Options = {
   examples?: Example[];
   model?: string;
+  format?: Format;
 };

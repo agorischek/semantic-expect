@@ -32,7 +32,6 @@ export const makeOpenAiChatCompleter: CompleterFactory<
       max_tokens: 100,
     });
     const completion = response.choices[0].message.content;
-    console.log(completion);
     return completion;
   };
   return completer;

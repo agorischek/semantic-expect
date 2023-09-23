@@ -6,8 +6,8 @@
 // expect.extend(makeOpenAIMatchers(new OpenAI()));
 
 test("Color Extraction", async () => {
-  const description = "The ball is red and round";
-  await expect(description).not.toHeed("Mention the color");
+  const description = "You look awful today";
+  await expect(description).toHeed("Be nice");
 });
 
 // test("Let's see", () => {
