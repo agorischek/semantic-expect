@@ -1,6 +1,8 @@
 # Semantic Expect
 
-LLM-based test assertions for Jest and Vitest
+LLM-based test assertions for Jest
+
+> This library is an early alpha and it seeking contributors!
 
 ```ts
 import OpenAI from "openai";
@@ -17,3 +19,10 @@ test("Compliment generator", async () => {
   await expect(compliment).toHeed("Be positive");
 });
 ```
+
+## To-do
+
+- Support LLM providers other than OpenAI
+- Support running a generator multiple times (e.g. `expect(randomCompliment).toHeedTimes("Be nice", 5)`)
+- Test coverage
+- Docs

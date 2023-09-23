@@ -185,4 +185,28 @@ export const defaultExamples: Example[] = [
     assessment: "Gets to five",
     pass: true,
   },
+  {
+    content: "Let's fly to Mars!",
+    rule: "Mention two planets",
+    assessment: "Only mentions one planet",
+    pass: false,
+  },
+  {
+    content: "Bonjour le monde.",
+    rule: "Use Spanish",
+    assessment: "Uses French",
+    pass: false,
+  },
+  {
+    content: "Hey what's up?",
+    rule: "Be casual",
+    assessment: "Is casual",
+    pass: true,
+  },
+  {
+    content: "Hey what's up?",
+    rule: "Be professional",
+    assessment: "Is casual",
+    pass: false,
+  },
 ];

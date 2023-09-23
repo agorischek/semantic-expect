@@ -12,6 +12,16 @@ describe("toHeed", () => {
 
   it("Should detect a planet", async () => {
     const description = "Let's fly to Mars!";
-    await expect(description).not.toHeed("Mention a planet");
+    await expect(description).toHeed("Mention two planets");
+  });
+
+  it("Should detect language", async () => {
+    const utterance = "Hello World";
+    await expect(utterance).toHeed("Use Spanish");
+  });
+
+  it.only("Should detect a move", async () => {
+    const utterance = "A New Hope";
+    await expect(utterance).not.toHeed("Reference the original");
   });
 });
