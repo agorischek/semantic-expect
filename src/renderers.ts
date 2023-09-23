@@ -6,7 +6,6 @@ import {
 } from "./types.js";
 
 import { defaultExamples, defaultInstructions } from "./prompting.js";
-import OpenAI from "openai";
 
 export function renderInstructions(): string {
   const rendered = `Instructions: ${defaultInstructions}`;
@@ -14,7 +13,7 @@ export function renderInstructions(): string {
 }
 
 export function renderInput(input: ExampleInput): string {
-  const rendered = `Rule: ${input.rule}\nContent: ${input.content}`;
+  const rendered = `Content: ${input.content}\nRule: ${input.rule}`;
   return rendered;
 }
 
@@ -39,11 +38,11 @@ export function renderOutputMessage(output: ExampleOutput): OpenAIMessage {
   return message;
 }
 
-export function renderMessages(
-  rule: string,
-  content: string,
-  additionalExamples?: Example[]
-): OpenAIMessage[] {
+export function renderMessages(details: {
+  rule: string;
+  content: string;
+  additionalExamples?: Example[];
+}): OpenAIMessage[] {
   const messages: OpenAIMessage[] = [];
 
   const systemMessage: OpenAIMessage = {
@@ -52,7 +51,7 @@ export function renderMessages(
   };
   messages.push(systemMessage);
 
-  const examples = buildExamples(additionalExamples);
+  const examples = buildExamples(details.additionalExamples);
 
   const exampleMessages = examples.reduce((acc, example) => {
     acc.push(renderInputMessage(example));
@@ -61,7 +60,10 @@ export function renderMessages(
   }, []);
   messages.push(...exampleMessages);
 
-  const promptMessage = renderInputMessage({ rule, content });
+  const promptMessage = renderInputMessage({
+    rule: details.rule,
+    content: details.content,
+  });
   messages.push(promptMessage);
 
   return messages;
@@ -80,18 +82,19 @@ export function renderExamples(examples: Example[]): string {
   return rendered;
 }
 
-export function renderPrompt(
-  rule: string,
-  content: string,
-  additionalExamples?: Example[]
-): string {
-  const examples = buildExamples(additionalExamples);
+export function renderPrompt(details: {
+  rule: string;
+  content: string;
+  additionalExamples?: Example[];
+}): string {
+  const examples = buildExamples(details.additionalExamples);
   const prompt = `${renderInstructions()}\n${renderExamples(
     examples
   )}\n${renderInput({
-    rule,
-    content,
+    rule: details.rule,
+    content: details.content,
   })}`;
+  console.log(prompt);
   return prompt;
 }
 

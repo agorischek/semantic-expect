@@ -14,8 +14,12 @@ export function makeOpenAITextDeterminer(
 ): Determiner {
   const complete = makeOpenAiTextCompleter(openai, options);
 
-  const determiner: Determiner = async (rule, content) => {
-    const prompt = renderPrompt(rule, content, options.examples);
+  const determiner: Determiner = async ({ rule, content }) => {
+    const prompt = renderPrompt({
+      rule,
+      content,
+      additionalExamples: options.examples,
+    });
     const completion = await complete(prompt);
     console.log(completion);
     const determination = extractDetermination(completion);
@@ -30,8 +34,12 @@ export function makeOpenAIChatDeterminer(
   options: Options = {}
 ): Determiner {
   const complete = makeOpenAiChatCompleter(openai, options);
-  const determine: Determiner = async (rule, content) => {
-    const messages = renderMessages(rule, content, options.examples);
+  const determine: Determiner = async ({ rule, content }) => {
+    const messages = renderMessages({
+      rule,
+      content,
+      additionalExamples: options.examples,
+    });
     const completion = await complete(messages);
     const determination = extractDetermination(completion);
     return determination;

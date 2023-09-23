@@ -8,7 +8,10 @@ import { Determiner, MatchersFactory } from "./types.js";
 export const makeMatchers = (determine: Determiner) => {
   const matchers = {
     toHeed: async (recieved: string, expected: string) => {
-      const determination = await determine(recieved, expected);
+      const determination = await determine({
+        content: recieved,
+        rule: expected,
+      });
       return {
         pass: determination.pass,
         message: () => determination.message,

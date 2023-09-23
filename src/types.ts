@@ -1,3 +1,8 @@
+export type Test = {
+  rule: string;
+  content: string;
+};
+
 export type ExampleInput = {
   rule: string;
   content: string;
@@ -23,10 +28,7 @@ export type Determination = {
 
 export type DeterminationParser = (response: string) => Determination;
 
-export type Determiner = (
-  rule: string,
-  content: string
-) => Promise<Determination>;
+export type Determiner = (test: Test) => Promise<Determination>;
 
 export type DeterminerFactory<T> = (completer: Completer<T>) => Determiner;
 

@@ -1,7 +1,13 @@
 import { Example } from "./types.js";
 
-export const defaultInstructions =
-  "You accept content and a rule. You provide an assessment of whether the content passes the rule, then indicate that Pass is either `true` (passes) or `false` (fails).";
+export const defaultInstructions = `
+You **must** follow these instructions **exactly**:
+1) Read the content
+2) Read the rule
+3) Consider whether the content adheres to the rule
+4) Write an assessment
+5) Indicate whether the content adheres the rule using true or false
+`;
 
 export const defaultExamples: Example[] = [
   {
@@ -147,6 +153,24 @@ export const defaultExamples: Example[] = [
     content: "The sky is blue",
     rule: "Be inaccurate",
     assessment: "The sky is blue",
+    pass: false,
+  },
+  {
+    content: "The sun is bright",
+    rule: "Mention the moon",
+    assessment: "Does not mention the moon",
+    pass: false,
+  },
+  {
+    content: "Bananas are yellow",
+    rule: "Mention bananas",
+    assessment: "Mentions bananas",
+    pass: true,
+  },
+  {
+    content: "The water is blue",
+    rule: "Mention the sky",
+    assessment: "Only mentions water",
     pass: false,
   },
 ];
