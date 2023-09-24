@@ -1,0 +1,14 @@
+badges:
+  - npm/v
+  - github/actions/workflow/status
+  - github/license
+  - badge-roll
+
+settings:
+  separator: newline
+  provider: shields
+  position: below-lead
+
+about:
+  branch: main
+  workflow: .github/workflows/ci.yml
