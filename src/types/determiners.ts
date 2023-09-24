@@ -1,5 +1,5 @@
-import { Test } from './results.js';
 import { Completer } from './completers.js';
+import { Test } from './results.js';
 
 /** Parsed, unformatted information from LLM response */
 export type Determination = {

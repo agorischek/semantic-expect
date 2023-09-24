@@ -1,6 +1,5 @@
-import { expect, it, describe } from 'vitest';
-
 import stripAnsi from 'strip-ansi';
+import { describe, expect, it } from 'vitest';
 
 import { renderMessage } from '../message.js';
 

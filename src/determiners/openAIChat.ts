@@ -1,10 +1,10 @@
 import { OpenAI } from 'openai';
 
+import { makeOpenAIChatCompleter } from '../completers/openAIChat.js';
 import { extractDetermination } from '../parsers/determination.js';
 import { renderMessages } from '../renderers/messages.js';
-import { Options } from '../types/options.js';
 import { Determiner } from '../types/determiners.js';
-import { makeOpenAIChatCompleter } from '../completers/openAIChat.js';
+import { Options } from '../types/options.js';
 
 export function makeOpenAIChatDeterminer(
   openai: OpenAI,

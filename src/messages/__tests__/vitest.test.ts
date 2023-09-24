@@ -1,4 +1,4 @@
-import { expect, it, describe } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { renderMessage } from '../message.js';
 
@@ -12,7 +12,9 @@ describe('Vitest message renderer', () => {
       name: 'toHeed',
       isNot: false,
     });
-    expect(message).toMatchInlineSnapshot('"expected \'Hello World\' to heed \'Use English\' (Uses English)"');
+    expect(message).toMatchInlineSnapshot(
+      "\"expected 'Hello World' to heed 'Use English' (Uses English)\"",
+    );
   });
 
   it('Should render a message for a failed test', async () => {
@@ -24,7 +26,9 @@ describe('Vitest message renderer', () => {
       name: 'toHeed',
       isNot: false,
     });
-    expect(message).toMatchInlineSnapshot('"expected \'Hello World\' to heed \'Use Spanish\' (Uses English)"');
+    expect(message).toMatchInlineSnapshot(
+      "\"expected 'Hello World' to heed 'Use Spanish' (Uses English)\"",
+    );
   });
 
   it('Should render a message for a negated passed test', async () => {
@@ -36,7 +40,9 @@ describe('Vitest message renderer', () => {
       name: 'toHeed',
       isNot: true,
     });
-    expect(message).toMatchInlineSnapshot('"expected \'Hello World not to heed \'Use English\' (Uses English)"');
+    expect(message).toMatchInlineSnapshot(
+      "\"expected 'Hello World not to heed 'Use English' (Uses English)\"",
+    );
   });
 
   it('Should render a message for a failed test', async () => {
@@ -48,6 +54,8 @@ describe('Vitest message renderer', () => {
       name: 'toHeed',
       isNot: true,
     });
-    expect(message).toMatchInlineSnapshot('"expected \'Hello World not to heed \'Use Spanish\' (Uses English)"');
+    expect(message).toMatchInlineSnapshot(
+      "\"expected 'Hello World not to heed 'Use Spanish' (Uses English)\"",
+    );
   });
 });

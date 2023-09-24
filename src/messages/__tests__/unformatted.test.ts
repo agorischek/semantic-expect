@@ -1,4 +1,4 @@
-import { expect, it, describe } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { renderMessage } from '../message.js';
 
@@ -12,7 +12,9 @@ describe('Unformatted message renderer', () => {
       name: 'toHeed',
       isNot: false,
     });
-    expect(message).toMatchInlineSnapshot('"\'Hello World\' should heed rule \'Use English\' (Uses English)"');
+    expect(message).toMatchInlineSnapshot(
+      "\"'Hello World' should heed rule 'Use English' (Uses English)\"",
+    );
   });
 
   it('Should render a message for a failed test', async () => {
@@ -24,7 +26,9 @@ describe('Unformatted message renderer', () => {
       name: 'toHeed',
       isNot: false,
     });
-    expect(message).toMatchInlineSnapshot('"\'Hello World\' should heed rule \'Use Spanish\' (Uses English)"');
+    expect(message).toMatchInlineSnapshot(
+      "\"'Hello World' should heed rule 'Use Spanish' (Uses English)\"",
+    );
   });
 
   it('Should render a message for a negated passed test', async () => {
@@ -36,7 +40,9 @@ describe('Unformatted message renderer', () => {
       name: 'toHeed',
       isNot: true,
     });
-    expect(message).toMatchInlineSnapshot('"\'Hello World\' should not heed rule \'Use English\' (Uses English)"');
+    expect(message).toMatchInlineSnapshot(
+      "\"'Hello World' should not heed rule 'Use English' (Uses English)\"",
+    );
   });
 
   it('Should render a message for a failed test', async () => {
@@ -48,6 +54,8 @@ describe('Unformatted message renderer', () => {
       name: 'toHeed',
       isNot: true,
     });
-    expect(message).toMatchInlineSnapshot('"\'Hello World\' should not heed rule \'Use Spanish\' (Uses English)"');
+    expect(message).toMatchInlineSnapshot(
+      "\"'Hello World' should not heed rule 'Use Spanish' (Uses English)\"",
+    );
   });
 });

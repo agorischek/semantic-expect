@@ -1,10 +1,10 @@
 import { OpenAI } from 'openai';
 
+import { makeOpenAITextCompleter } from '../completers/openAIText.js';
 import { extractDetermination } from '../parsers/determination.js';
 import { renderPrompt } from '../renderers/prompt.js';
-import { Options } from '../types/options.js';
 import { Determiner } from '../types/determiners.js';
-import { makeOpenAITextCompleter } from '../completers/openAIText.js';
+import { Options } from '../types/options.js';
 
 export function makeOpenAITextDeterminer(
   openai: OpenAI,

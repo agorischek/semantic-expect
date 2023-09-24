@@ -1,7 +1,7 @@
 import { OpenAI } from 'openai';
 
-import { CompleterFactory } from './../types/completers.js';
 import { models } from '../defaults/models.js';
+import { CompleterFactory } from './../types/completers.js';
 
 export const makeOpenAITextCompleter: CompleterFactory<OpenAI, string> = (
   openai,

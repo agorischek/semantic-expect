@@ -1,8 +1,8 @@
 import {
+  DIM_COLOR,
   matcherHint,
   printExpected,
   printReceived,
-  DIM_COLOR,
 } from 'jest-matcher-utils';
 
 import type { ResultMessageDetails } from '../types/results.js';

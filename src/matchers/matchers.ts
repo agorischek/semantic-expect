@@ -1,8 +1,8 @@
 import { MatcherHintOptions } from 'jest-matcher-utils';
 
-import { ResultMessageFormat } from '../types/options.js';
-import { Determiner } from '../types/determiners.js';
 import { renderMessage } from '../messages/message.js';
+import { Determiner } from '../types/determiners.js';
+import { ResultMessageFormat } from '../types/options.js';
 
 export const makeMatchers = (
   determine: Determiner,

@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 describe('To Heed Matcher', () => {
   it('Should detect a color', async () => {
