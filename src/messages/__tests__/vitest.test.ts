@@ -41,7 +41,7 @@ describe('Vitest message renderer', () => {
       isNot: true,
     });
     expect(message).toMatchInlineSnapshot(
-      "\"expected 'Hello World not to heed 'Use English' (Uses English)\"",
+      "\"expected 'Hello World' not to heed 'Use English' (Uses English)\"",
     );
   });
 
@@ -55,7 +55,7 @@ describe('Vitest message renderer', () => {
       isNot: true,
     });
     expect(message).toMatchInlineSnapshot(
-      "\"expected 'Hello World not to heed 'Use Spanish' (Uses English)\"",
+      "\"expected 'Hello World' not to heed 'Use Spanish' (Uses English)\"",
     );
   });
 });
