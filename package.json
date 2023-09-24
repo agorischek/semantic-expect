@@ -10,6 +10,7 @@
     "dev:vitest": "vitest --config dev/vitest/vitest.dev.config.ts",
     "start": "npm t dev",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -27,6 +28,7 @@
   "author": "Alex Gorischek",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^29.5.5",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@vitest/coverage-v8": "^0.34.5",
     "dotenv": "^16.3.1",
@@ -46,8 +48,6 @@
     "vitest": "^0.34.5"
   },
   "dependencies": {
-    "@jest/types": "^29.6.3",
-    "@types/jest": "^29.5.5",
     "jest-matcher-utils": "^29.7.0",
     "openai": "^4.10.0"
   }
