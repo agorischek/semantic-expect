@@ -51,6 +51,12 @@ and
 [Vitest Extending Matchers](https://vitest.dev/guide/extending-matchers.html)
 for further details.
 
+To use custom matchers across multiple test files, you can register them in a
+separate setup file. See
+[Jest `setupFilesAfterEnv` configuration](https://jestjs.io/docs/configuration#setupfilesafterenv-array)
+and [Vitest `setupFiles` configuration](https://vitest.dev/config/#setupfiles)
+for further details.
+
 ## Models
 
 Semantic Expect provides multiple options for the models backing the custom
@@ -71,11 +77,15 @@ const textMatchers = makeOpenAITextMatchers(client, {
 const chatMatchers = makeOpenAIChatMatchers(client, { model: 'gpt-4' });
 ```
 
-To use custom matchers across multiple test files, you can register them in a
-separate setup file. See
-[Jest `setupFilesAfterEnv` configuration](https://jestjs.io/docs/configuration#setupfilesafterenv-array)
-and [Vitest `setupFiles` configuration](https://vitest.dev/config/#setupfiles)
-for further details.
+## Message formats
+
+Semantic Expect generates an unformatted test result message by default, however
+this can be customized for your test runner and preferences:
+
+```ts
+const jestMatchers = makeOpenAIMatchers(client, { format: 'jest' });
+const vitestMatchers = makeOpenAIMatchers(client, { format: 'vitest' });
+```
 
 ## Additional examples
 
@@ -108,16 +118,6 @@ const matchers = makeOpenAIMatchers(client, {
 
 There is no hard limit to the number of custom examples you can provide, however
 note that you may eventually run up against token limits imposed by your model.
-
-## Message formats
-
-Semantic Expect generates an unformatted test result message by default, however
-this can be customized for your test runner and preferences:
-
-```ts
-const jestMatchers = makeOpenAIMatchers(client, { format: 'jest' });
-const vitestMatchers = makeOpenAIMatchers(client, { format: 'vitest' });
-```
 
 ## To-do
 
