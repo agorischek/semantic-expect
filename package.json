@@ -23,13 +23,17 @@
     "test:e2e": "vitest run --config vitest.llm.config.ts"
   },
   "keywords": [
-    "unit",
-    "tests",
-    "llm",
-    "openai",
+    "ai",
+    "assert",
+    "assertion",
+    "expect",
     "jest",
-    "vitest",
-    "expect"
+    "llm",
+    "npm",
+    "openai",
+    "tests",
+    "unit",
+    "vitest"
   ],
   "author": "Alex Gorischek",
   "license": "MIT",
