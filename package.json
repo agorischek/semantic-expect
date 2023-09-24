@@ -12,6 +12,7 @@
     "badge": "badge-roll affix",
     "build": "tsc --project tsconfig.build.json",
     "dev:jest": "jest --config dev/jest/jest.config.js",
+    "dev:unformatted": "vitest --config dev/unformatted/vitest.dev.config.ts",
     "dev:vitest": "vitest --config dev/vitest/vitest.dev.config.ts",
     "start": "npm t dev",
     "format": "prettier --write .",

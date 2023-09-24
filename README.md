@@ -17,6 +17,7 @@ test('Compliment generator', async () => {
   const compliment = await generateCompliment();
 
   // Provide a rule that must be followed
+  // Be sure to `await` the assertion!
   await expect(compliment).toHeed('Be positive');
 });
 ```
@@ -57,6 +58,36 @@ separate setup file. See
 and [Vitest `setupFiles` configuration](https://vitest.dev/config/#setupfiles)
 for further details.
 
+## Matchers
+
+Semantic Expect provides a `toHeed` matcher, which assesses whether input
+content follows a particular rule. The input content itself will typically come
+from a non-deterministic process, such as an LLM or other generative AI
+technology, and thus can't be checked for equivalence with a hardcoded value
+using a traditional matcher like `toBe`.
+
+```ts
+test("ELI5 generation", async () => {
+  const content = await llm.prompt("Explain quantum physics like I'm 5 years old");
+  await expect(content).toHeed('Avoid technical jargon')
+});
+```
+
+__Note:__ You ___must___ `await` the assertion, since the model call is asynchronous. If you don't, the test will always pass!
+
+If the content does not heed the rule, `toHeed` will provide a message explaining why:
+
+> 'Quantum physics uses wave-particle duality, superposition, and entanglement to describe the behavior of matter and energy' should heed rule 'Avoid technical jargon' (Mentions wave-particle duality, superposition, and entanglement)
+
+The `toHeed` matcher can also be negated using `not`:
+
+```ts
+test("Translation", async () => {
+  const content = await llm.prompt("Say 'Hello World' in a random other language");
+  await expect(content).not.toHeed('Use English')
+});
+```
+
 ## Models
 
 Semantic Expect provides multiple options for the models backing the custom
@@ -68,7 +99,7 @@ matchers.
 - `makeOpenAITextMatchers`: Uses OpenAI backend and always uses text-based
   (instruct) model
 
-You can also specify a specific model via `options` if desired:
+You can also specify a particular model via `options` if desired:
 
 ```ts
 const textMatchers = makeOpenAITextMatchers(client, {

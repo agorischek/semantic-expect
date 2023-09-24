@@ -7,7 +7,7 @@ export const renderVitestMessage = ({
   assessment,
 }: ResultMessageDetails) => {
   const message = isNot
-    ? `expected '${content} not to heed '${rule}' (${assessment})`
+    ? `expected '${content}' not to heed '${rule}' (${assessment})`
     : `expected '${content}' to heed '${rule}' (${assessment})`;
   return message;
 };
