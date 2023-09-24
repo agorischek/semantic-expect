@@ -14,7 +14,7 @@
     "lint": "eslint .",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "vitest --config vitest.llm.config.ts"
+    "test:e2e": "vitest run --config vitest.llm.config.ts"
   },
   "keywords": [
     "unit",
@@ -28,6 +28,7 @@
   "author": "Alex Gorischek",
   "license": "MIT",
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
     "@types/jest": "^29.5.5",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@vitest/coverage-v8": "^0.34.5",
