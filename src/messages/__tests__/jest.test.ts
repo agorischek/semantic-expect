@@ -2,7 +2,7 @@ import { expect, it, describe } from 'vitest';
 
 import { renderMessage } from '../message.js';
 
-describe('Unformatted message renderer', () => {
+describe('Jest message renderer', () => {
   it('Should render a message for a passed test', async () => {
     const message = renderMessage('jest', {
       content: 'Hello World',

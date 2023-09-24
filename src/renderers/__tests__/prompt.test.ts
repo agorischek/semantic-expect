@@ -7,9 +7,3 @@ describe('prompt renderers', () => {
     expect(prompt).toMatch('You **must** follow these instructions');
   });
 });
-
-describe('fake tests', () => {
-  it('should pass', () => {
-    expect('hi').not.toBe('hi');
-  });
-});
