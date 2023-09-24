@@ -1,5 +1,5 @@
 import { Options } from '../index.js';
-import { Result } from '../types.js';
+import { Result } from './results.js';
 
 export type Matcher = (recieved: string, expected: string) => Promise<Result>;
 

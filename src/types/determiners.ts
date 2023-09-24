@@ -1,4 +1,4 @@
-import { Test } from '../types.js';
+import { Test } from './results.js';
 import { Completer } from './completers.js';
 
 /** Parsed, unformatted information from LLM response */
