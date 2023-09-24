@@ -27,7 +27,7 @@ To use `semantic-expect`, you'll need to register custom matchers with your test
 
 ```ts
 // First, import and instantiate your LLM client
-// If you already instantiate your LLM client elsewhere in your application, you can reuse that client
+// If you already instantiate your LLM client elsewhere, you can reuse that client
 import { OpenAI } from 'openai';
 const model = new OpenAI();
 
@@ -48,7 +48,7 @@ expect.extend(makeOpenAIMatchers(new OpenAI()));
 
 `semantic-expect` provides multiple options for the models backing the custom matchers.
 
-- `makeOpenAIMatchers`: Uses OpenAI backend and defaults to chat-based model (alias for `makeOpenAIMatchers`)
+- `makeOpenAIMatchers`: Uses OpenAI backend and defaults to chat-based model (alias for `makeOpenAIChatMatchers`)
 - `makeOpenAIChatMatchers`: Uses OpenAI backend and always uses chat-based model
 - `makeOpenAITextMatchers`: Uses OpenAI backend and always uses text-based (instruct) model
 

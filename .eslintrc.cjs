@@ -21,6 +21,12 @@ module.exports = {
         sourceType: 'script',
       },
     },
+    {
+      files: ['**/README.md'],
+      rules: {
+        '@typescript-eslint/no-unused-vars': ['off'],
+      },
+    },
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
