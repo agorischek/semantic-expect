@@ -15,6 +15,5 @@ export function renderPrompt(details: {
     rule: details.rule,
     content: details.content,
   })}`;
-  console.log(prompt);
   return prompt;
 }

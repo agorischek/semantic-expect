@@ -7,10 +7,12 @@
   "scripts": {
     "build": "tsc",
     "dev:jest": "jest --config dev/jest/jest.config.js",
+    "dev:vitest": "vitest --config dev/vitest/vitest.dev.config.ts",
     "start": "npm t dev",
     "format": "prettier --write .",
     "lint": "eslint .",
     "test": "vitest",
+    "test:coverage": "vitest run --coverage",
     "test:e2e": "vitest --config vitest.llm.config.ts"
   },
   "keywords": [
@@ -26,6 +28,7 @@
   "license": "MIT",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@vitest/coverage-v8": "^0.34.5",
     "dotenv": "^16.3.1",
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.0.0",

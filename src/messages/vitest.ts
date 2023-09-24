@@ -1,14 +1,13 @@
 import type { ResultMessageDetails } from '../types/results.js';
 
-export const renderUnformattedMessage = ({
+export const renderVitestMessage = ({
   isNot,
   rule,
   content,
   assessment,
 }: ResultMessageDetails) => {
   const message = isNot
-    ? `'${content}' should not heed rule '${rule}' (${assessment})`
-    : `'${content}' should heed rule '${rule}' (${assessment})`;
-
+    ? `expected '${content} not to heed '${rule}' (${assessment})`
+    : `expected '${content}' to heed '${rule}' (${assessment})`;
   return message;
 };

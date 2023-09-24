@@ -9,5 +9,8 @@ export default defineConfig({
       '**/*.llm.test.ts',
     ],
     setupFiles: ['vitest.setup.ts'],
+    coverage: {
+      provider: 'v8',
+    },
   },
 });
