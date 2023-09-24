@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --project tsconfig.build.json",
     "dev:jest": "jest --config dev/jest/jest.config.js",
     "dev:vitest": "vitest --config dev/vitest/vitest.dev.config.ts",
     "start": "npm t dev",
