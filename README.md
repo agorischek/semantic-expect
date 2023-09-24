@@ -1,12 +1,13 @@
 # 🔡🤞 Semantic Expect
 
-LLM-based test assertions for Jest
+LLM-based test assertions for Vitest and Jest
 
-> This library is an early alpha and it seeking contributors!
+> This library is an early alpha and is seeking contributors!
 
 ```ts
 import OpenAI from 'openai';
 import { makeOpenAIMatchers } from 'semantic-expect';
+
 import { generateCompliment } from './my-llm-functions.js';
 
 expect.extend(makeOpenAIMatchers(new OpenAI()));
