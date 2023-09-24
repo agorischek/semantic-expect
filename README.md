@@ -1,6 +1,6 @@
 # 🔡🤞 Semantic Expect
 
-> This library is an early alpha and is seeking contributors!
+> This library is in early development and is seeking contributors!
 
 LLM-based test assertions for Vitest and Jest
 
@@ -21,6 +21,25 @@ test('Compliment generator', async () => {
   await expect(compliment).toHeed('Be positive');
 });
 ```
+
+## Philosophy
+
+Developing applications backed by generative artificial intelligence (such as
+large language models) requires us to redefine the very notion of "reliability".
+No longer is it possible — or even desirable — to expect our applications to do
+exactly what we program them to do: Not only are LLMs fundamentally
+non-deterministic, but exhibiting emergent and unprogrammed behaviors is one of
+the key things that makes LLMs so powerful in the first place. Any
+production-grade LLM-powered system will require multiple quality assurance
+mechanisms, including run-time checks and live service monitoring. Semantic
+Expect's role is to shift basic validation left and verify essential behavior
+before shipping. It will always be possible to tweak prompts and eke out
+slightly better responses, but some behaviors may be simply unacceptable to ship
+at all. Semantic Expect lets you write tests for generative features that can be
+added to your continuous integration and deployment processes, alongside
+end-to-end and integration tests. You should err toward defining rules that
+express _acceptable_ behavior rather than _perfect_ behavior; otherwise your
+tests may exhibit "flakiness" that impedes development velocity.
 
 ## Setup
 
@@ -67,24 +86,33 @@ technology, and thus can't be checked for equivalence with a hardcoded value
 using a traditional matcher like `toBe`.
 
 ```ts
-test("ELI5 generation", async () => {
-  const content = await llm.prompt("Explain quantum physics like I'm 5 years old");
-  await expect(content).toHeed('Avoid technical jargon')
+test('ELI5 generation', async () => {
+  const content = await llm.prompt(
+    "Explain quantum physics like I'm 5 years old",
+  );
+  await expect(content).toHeed('Avoid technical jargon');
 });
 ```
 
-__Note:__ You ___must___ `await` the assertion, since the model call is asynchronous. If you don't, the test will always pass!
+**Note:** You **_must_** `await` the assertion, since the model call is
+asynchronous. If you don't, the test will always pass!
 
-If the content does not heed the rule, `toHeed` will provide a message explaining why:
+If the content does not heed the rule, `toHeed` will provide a message
+explaining why:
 
-> 'Quantum physics uses wave-particle duality, superposition, and entanglement to describe the behavior of matter and energy' should heed rule 'Avoid technical jargon' (Mentions wave-particle duality, superposition, and entanglement)
+> 'Quantum physics uses wave-particle duality, superposition, and entanglement
+> to describe the behavior of matter and energy' should heed rule 'Avoid
+> technical jargon' (Mentions wave-particle duality, superposition, and
+> entanglement)
 
 The `toHeed` matcher can also be negated using `not`:
 
 ```ts
-test("Translation", async () => {
-  const content = await llm.prompt("Say 'Hello World' in a random other language");
-  await expect(content).not.toHeed('Use English')
+test('Translation', async () => {
+  const content = await llm.prompt(
+    "Say 'Hello World' in a random other language",
+  );
+  await expect(content).not.toHeed('Use English');
 });
 ```
 
