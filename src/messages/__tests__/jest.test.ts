@@ -1,5 +1,7 @@
 import { expect, it, describe } from 'vitest';
 
+import stripAnsi from 'strip-ansi';
+
 import { renderMessage } from '../message.js';
 
 describe('Jest message renderer', () => {
@@ -12,11 +14,12 @@ describe('Jest message renderer', () => {
       name: 'toHeed',
       isNot: false,
     });
-    expect(message).toMatchInlineSnapshot(`
-      "[2mexpect([22m[31mreceived[39m[2m).[22mtoHeed[2m([22m[32mrule[39m[2m)[22m
+    const plain = stripAnsi(message);
+    expect(plain).toMatchInlineSnapshot(`
+      "expect(received).toHeed(rule)
 
-      Rule: [32m\\"Use English\\"[39m
-      Received: [31m\\"Hello World\\"[39m [2m// Uses English[22m"
+      Rule: \\"Use English\\"
+      Received: \\"Hello World\\" // Uses English"
     `);
   });
 
@@ -29,11 +32,12 @@ describe('Jest message renderer', () => {
       name: 'toHeed',
       isNot: false,
     });
-    expect(message).toMatchInlineSnapshot(`
-      "[2mexpect([22m[31mreceived[39m[2m).[22mtoHeed[2m([22m[32mrule[39m[2m)[22m
+    const plain = stripAnsi(message);
+    expect(plain).toMatchInlineSnapshot(`
+      "expect(received).toHeed(rule)
 
-      Rule: [32m\\"Use Spanish\\"[39m
-      Received: [31m\\"Hello World\\"[39m [2m// Uses English[22m"
+      Rule: \\"Use Spanish\\"
+      Received: \\"Hello World\\" // Uses English"
     `);
   });
 
@@ -46,11 +50,12 @@ describe('Jest message renderer', () => {
       name: 'toHeed',
       isNot: true,
     });
-    expect(message).toMatchInlineSnapshot(`
-      "[2mexpect([22m[31mreceived[39m[2m).[22mnot[2m.[22mtoHeed[2m([22m[32mrule[39m[2m) // Fails if rule is followed[22m
+    const plain = stripAnsi(message);
+    expect(plain).toMatchInlineSnapshot(`
+      "expect(received).not.toHeed(rule) // Fails if rule is followed
 
-      Rule: [32m\\"Use English\\"[39m
-      Received: [31m\\"Hello World\\"[39m [2m// Uses English[22m"
+      Rule: \\"Use English\\"
+      Received: \\"Hello World\\" // Uses English"
     `);
   });
 
@@ -63,11 +68,12 @@ describe('Jest message renderer', () => {
       name: 'toHeed',
       isNot: true,
     });
-    expect(message).toMatchInlineSnapshot(`
-      "[2mexpect([22m[31mreceived[39m[2m).[22mnot[2m.[22mtoHeed[2m([22m[32mrule[39m[2m) // Fails if rule is followed[22m
+    const plain = stripAnsi(message);
+    expect(plain).toMatchInlineSnapshot(`
+      "expect(received).not.toHeed(rule) // Fails if rule is followed
 
-      Rule: [32m\\"Use Spanish\\"[39m
-      Received: [31m\\"Hello World\\"[39m [2m// Uses English[22m"
+      Rule: \\"Use Spanish\\"
+      Received: \\"Hello World\\" // Uses English"
     `);
   });
 });
