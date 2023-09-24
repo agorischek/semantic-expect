@@ -11,23 +11,18 @@ export const makeMatchers = (
   const matchers = {
     toHeed: async function (
       this: MatcherHintOptions,
-      recieved: string,
+      received: string,
       expected: string,
     ) {
-      const { isNot } = this;
-
       const name = 'toHeed';
-
-      const content = recieved;
+      const content = received;
       const rule = expected;
-
+      const { isNot } = this;
       const { assessment, pass } = await determine({ content, rule });
-
-      const message = () =>
-        renderMessage(format, { assessment, pass, rule, content, name, isNot });
-
-      const matcher = { pass, message };
-      return matcher;
+      const details = { content, rule, assessment, isNot, name, pass };
+      const message = () => renderMessage(format, details);
+      const result = { pass, message };
+      return result;
     },
   };
   return matchers;
