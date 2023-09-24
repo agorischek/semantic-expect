@@ -23,7 +23,7 @@ test('Compliment generator', async () => {
 
 ## Setup
 
-To use `semantic-expect`, you'll need to register custom matchers with your test
+To use Semantic Expect, you'll need to register custom matchers with your test
 runner. Instructions vary slightly by runner, but generally look like this:
 
 ```ts
@@ -46,9 +46,14 @@ You can typically do all of this on one line if preferred:
 expect.extend(makeOpenAIMatchers(new OpenAI()));
 ```
 
+See [Jest `expect.extend()`](https://jestjs.io/docs/expect#expectextendmatchers)
+and
+[Vitest Extending Matchers](https://vitest.dev/guide/extending-matchers.html)
+for further details.
+
 ## Models
 
-`semantic-expect` provides multiple options for the models backing the custom
+Semantic Expect provides multiple options for the models backing the custom
 matchers.
 
 - `makeOpenAIMatchers`: Uses OpenAI backend and defaults to chat-based model
@@ -74,7 +79,7 @@ for further details.
 
 ## Additional examples
 
-`semantic-expect` includes general examples by default, however your particular
+Semantic Expect includes general examples by default, however your particular
 use case may benefit from additional guidance. Examples include the following
 properties:
 
@@ -106,8 +111,8 @@ note that you may eventually run up against token limits imposed by your model.
 
 ## Message formats
 
-`semantic-expect` uses an unformatted result message by default, however this
-can be customized for your test runner and preferences:
+Semantic Expect generates an unformatted test result message by default, however
+this can be customized for your test runner and preferences:
 
 ```ts
 const jestMatchers = makeOpenAIMatchers(client, { format: 'jest' });
