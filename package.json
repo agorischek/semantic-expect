@@ -6,12 +6,12 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "dev:jest": "jest --config dev/jest/jest.config.js",
     "start": "npm t dev",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "test": "npm run test:jest",
-    "test:jest": "jest",
-    "test:vitest": "vitest"
+    "test": "vitest",
+    "test:e2e": "vitest --config vitest.llm.config.ts"
   },
   "keywords": [
     "unit",

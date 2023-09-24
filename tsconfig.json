@@ -2,7 +2,7 @@
   "include": [
     "./src/**/*",
     "./dev/**/*",
-    "jest.setup.ts",
+    "dev/jest/jest.setup.ts",
     "dev/failure-examples.ts.ts"
   ],
   "compilerOptions": {
