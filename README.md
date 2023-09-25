@@ -18,7 +18,7 @@ test('Compliment generator', async () => {
 
   // Provide a rule that must be followed
   // Be sure to `await` the assertion!
-  await expect(compliment).toDefinitely('Be positive');
+  await expect(compliment).toDefinitely('be positive');
 });
 ```
 
@@ -83,7 +83,9 @@ Semantic Expect provides the `toDefinitely` matcher, which assesses whether
 input content meets some assertion. The input content itself will typically come
 from a non-deterministic process, such as an LLM or other generative AI
 technology, and thus can't be checked for equivalence with a hardcoded value
-using a traditional matcher like `toBe`.
+using a traditional matcher like `toBe`. The assertions should be kept broad
+enough that they can _definitely_ be met even with the inherent variability of
+the content being tested.
 
 ```ts
 test('ELI5 generation', async () => {
@@ -111,7 +113,19 @@ test('Translation', async () => {
   const content = await llm.prompt(
     "Say 'Hello World' in a random other language",
   );
-  await expect(content).not.toDefinitely('Use English');
+  await expect(content).not.toDefinitely('use English');
+});
+```
+
+However, it also works (and may be more readable) to include `"not"` in the
+assertion:
+
+```ts
+test('Translation', async () => {
+  const content = await llm.prompt(
+    "Say 'Hello World' in a random other language",
+  );
+  await expect(content).toDefinitely('not use English');
 });
 ```
 
@@ -151,13 +165,13 @@ Semantic Expect includes general examples by default, however your particular
 use case may benefit from additional guidance. Examples include the following
 properties:
 
-- `rule`: A description of the rule the model should heed, such as
-  `"Be professional"`
+- `assertion`: A statement the response should fulfill, such as
+  `"be professional"`
 - `content`: The content being submitted for assessment, such as
   `"What's up?? 🤪"`
-- `assessment`: A brief assessment of why the content does or doesn't heed the
-  rule, such as `"Uses casual language"`
-- `pass`: `true` if rule is heeded, `false` if not
+- `assessment`: A brief assessment of why the content does or doesn't fulfill
+  the assertion, such as `"Uses casual language"`
+- `pass`: `true` if assertion is fulfilled, `false` if not
 
 Additional examples are registered when you create your matchers:
 
@@ -181,7 +195,7 @@ note that you may eventually run up against token limits imposed by your model.
 
 - Support LLM providers other than OpenAI
 - Support running a generator multiple times (e.g.
-  `expect(randomCompliment).toDefinitelyTimes("Be nice", 5)`)
+  `expect(randomCompliment).toConsistently("Be nice", 5)`)
 - Message formats for additional test runners, and fully custom format function
 - Test coverage
 - Docs
