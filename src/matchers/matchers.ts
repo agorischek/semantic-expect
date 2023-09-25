@@ -16,10 +16,10 @@ export const makeMatchers = (
     ) {
       const name = 'toDefinitely';
       const content = received;
-      const assertion = expected;
+      const requirement = expected;
       const { isNot } = this;
-      const { assessment, pass } = await determine({ content, assertion });
-      const details = { content, assertion, assessment, isNot, name, pass };
+      const { assessment, pass } = await determine({ content, requirement });
+      const details = { content, requirement, assessment, isNot, name, pass };
       const message = () => renderMessage(format, details);
       const result = { pass, message };
       return result;

@@ -4,7 +4,7 @@ export {};
 declare global {
   namespace jest {
     interface Matchers<R> {
-      toDefinitely(assertion: string): Promise<R>;
+      toDefinitely(requirement: string): Promise<R>;
     }
   }
 }

@@ -80,10 +80,10 @@ for further details.
 ## Matcher
 
 Semantic Expect provides the `toDefinitely` matcher, which assesses whether
-input content meets some assertion. The input content itself will typically come
-from a non-deterministic process, such as an LLM or other generative AI
+input content meets some requirement. The input content itself will typically
+come from a non-deterministic process, such as an LLM or other generative AI
 technology, and thus can't be checked for equivalence with a hardcoded value
-using a traditional matcher like `toBe`. The assertions should be kept broad
+using a traditional matcher like `toBe`. The requirements should be kept broad
 enough that they can _definitely_ be met even with the inherent variability of
 the content being tested.
 
@@ -99,7 +99,7 @@ test('ELI5 generation', async () => {
 **Note:** You **_must_** `await` the assertion, since the model call is
 asynchronous. If you don't, the test will always pass!
 
-If the content does not fulfill the assertion, the matcher will provide a
+If the content does not fulfill the requirement, the matcher will provide a
 message explaining why:
 
 > 'Quantum physics uses wave-particle duality, superposition, and entanglement
@@ -118,7 +118,7 @@ test('Translation', async () => {
 ```
 
 However, it also works (and may be more readable) to include `"not"` in the
-assertion:
+requirement:
 
 ```ts
 test('Translation', async () => {
@@ -165,13 +165,13 @@ Semantic Expect includes general examples by default, however your particular
 use case may benefit from additional guidance. Examples include the following
 properties:
 
-- `assertion`: A statement the response should fulfill, such as
+- `requirement`: A statement the response should fulfill, such as
   `"be professional"`
 - `content`: The content being submitted for assessment, such as
   `"What's up?? 🤪"`
 - `assessment`: A brief assessment of why the content does or doesn't fulfill
-  the assertion, such as `"Uses casual language"`
-- `pass`: `true` if assertion is fulfilled, `false` if not
+  the requirement, such as `"Uses casual language"`
+- `pass`: `true` if requirement is fulfilled, `false` if not
 
 Additional examples are registered when you create your matchers:
 
@@ -179,7 +179,7 @@ Additional examples are registered when you create your matchers:
 const matchers = makeOpenAIMatchers(client, {
   examples: [
     {
-      assertion: 'Be professional',
+      requirement: 'Be professional',
       content: "What's up?? 🤪",
       assessment: 'Uses casual language',
       pass: false,

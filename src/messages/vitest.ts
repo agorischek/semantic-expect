@@ -2,12 +2,12 @@ import type { ResultMessageDetails } from '../types/results.js';
 
 export const renderVitestMessage = ({
   isNot,
-  assertion,
+  requirement,
   content,
   assessment,
 }: ResultMessageDetails) => {
   const message = isNot
-    ? `expected '${content}' not to '${assertion}' (${assessment})`
-    : `expected '${content}' to '${assertion}' (${assessment})`;
+    ? `expected '${content}' not to '${requirement}' (${assessment})`
+    : `expected '${content}' to '${requirement}' (${assessment})`;
   return message;
 };

@@ -10,14 +10,14 @@ import type { ResultMessageDetails } from '../types/results.js';
 export const renderJestMessage = ({
   name,
   isNot,
-  assertion,
+  requirement,
   content,
   assessment,
 }: ResultMessageDetails) => {
-  const comment = isNot ? 'Fails if assertion is fulfilled' : undefined;
-  const hint = matcherHint(name, undefined, 'assertion', { isNot, comment });
+  const comment = isNot ? 'Fails if requirement is fulfilled' : undefined;
+  const hint = matcherHint(name, undefined, 'requirement', { isNot, comment });
 
-  const expectedLine = `Assertion: ${printExpected(assertion)}`;
+  const expectedLine = `Requirement: ${printExpected(requirement)}`;
   const receivedLine = `Received: ${printReceived(content)} ${DIM_COLOR(
     `// ${assessment}`,
   )}`;

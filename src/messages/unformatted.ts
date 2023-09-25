@@ -2,13 +2,13 @@ import type { ResultMessageDetails } from '../types/results.js';
 
 export const renderUnformattedMessage = ({
   isNot,
-  assertion,
+  requirement,
   content,
   assessment,
 }: ResultMessageDetails) => {
   const message = isNot
-    ? `'${content}' should not '${assertion}' (${assessment})`
-    : `'${content}' should '${assertion}' (${assessment})`;
+    ? `'${content}' should not '${requirement}' (${assessment})`
+    : `'${content}' should '${requirement}' (${assessment})`;
 
   return message;
 };

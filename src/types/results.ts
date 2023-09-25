@@ -1,5 +1,5 @@
 export type Test = {
-  assertion: string;
+  requirement: string;
   content: string;
 };
 
@@ -11,7 +11,7 @@ export type Result = {
 export type ResultMessageDetails = {
   name: string;
   isNot?: boolean;
-  assertion: string;
+  requirement: string;
   assessment: string;
   content: string;
   pass: boolean;

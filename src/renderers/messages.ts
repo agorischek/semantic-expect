@@ -6,7 +6,7 @@ import { renderInputMessage } from './input.js';
 import { renderOutputMessage } from './output.js';
 
 export function renderMessages(details: {
-  assertion: string;
+  requirement: string;
   content: string;
   additionalExamples?: Example[];
 }): OpenAIMessage[] {
@@ -28,7 +28,7 @@ export function renderMessages(details: {
   messages.push(...exampleMessages);
 
   const promptMessage = renderInputMessage({
-    assertion: details.assertion,
+    requirement: details.requirement,
     content: details.content,
   });
   messages.push(promptMessage);

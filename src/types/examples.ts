@@ -1,5 +1,5 @@
 export type ExampleInput = {
-  assertion: string;
+  requirement: string;
   content: string;
 };
 

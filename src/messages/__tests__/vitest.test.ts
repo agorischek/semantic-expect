@@ -6,7 +6,7 @@ describe('Vitest message renderer', () => {
   it('Should render a message for a passed test', async () => {
     const message = renderMessage('vitest', {
       content: 'Hello World',
-      assertion: 'Use English',
+      requirement: 'Use English',
       assessment: 'Uses English',
       pass: true,
       name: 'toDefinitely',
@@ -20,7 +20,7 @@ describe('Vitest message renderer', () => {
   it('Should render a message for a failed test', async () => {
     const message = renderMessage('vitest', {
       content: 'Hello World',
-      assertion: 'Use Spanish',
+      requirement: 'Use Spanish',
       assessment: 'Uses English',
       pass: false,
       name: 'toDefinitely',
@@ -34,7 +34,7 @@ describe('Vitest message renderer', () => {
   it('Should render a message for a negated passed test', async () => {
     const message = renderMessage('vitest', {
       content: 'Hello World',
-      assertion: 'Use English',
+      requirement: 'Use English',
       assessment: 'Uses English',
       pass: true,
       name: 'toDefinitely',
@@ -48,7 +48,7 @@ describe('Vitest message renderer', () => {
   it('Should render a message for a failed test', async () => {
     const message = renderMessage('vitest', {
       content: 'Hello World',
-      assertion: 'Use Spanish',
+      requirement: 'Use Spanish',
       assessment: 'Uses English',
       pass: false,
       name: 'toDefinitely',

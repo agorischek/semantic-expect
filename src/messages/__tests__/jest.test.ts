@@ -7,7 +7,7 @@ describe('Jest message renderer', () => {
   it('Should render a message for a passed test', async () => {
     const message = renderMessage('jest', {
       content: 'Hello World',
-      assertion: 'Use English',
+      requirement: 'Use English',
       assessment: 'Uses English',
       pass: true,
       name: 'toDefinitely',
@@ -15,9 +15,9 @@ describe('Jest message renderer', () => {
     });
     const plain = stripAnsi(message);
     expect(plain).toMatchInlineSnapshot(`
-      "expect(received).toDefinitely(assertion)
+      "expect(received).toDefinitely(requirement)
 
-      Assertion: \\"Use English\\"
+      Requirement: \\"Use English\\"
       Received: \\"Hello World\\" // Uses English"
     `);
   });
@@ -25,7 +25,7 @@ describe('Jest message renderer', () => {
   it('Should render a message for a failed test', async () => {
     const message = renderMessage('jest', {
       content: 'Hello World',
-      assertion: 'Use Spanish',
+      requirement: 'Use Spanish',
       assessment: 'Uses English',
       pass: false,
       name: 'toDefinitely',
@@ -33,9 +33,9 @@ describe('Jest message renderer', () => {
     });
     const plain = stripAnsi(message);
     expect(plain).toMatchInlineSnapshot(`
-      "expect(received).toDefinitely(assertion)
+      "expect(received).toDefinitely(requirement)
 
-      Assertion: \\"Use Spanish\\"
+      Requirement: \\"Use Spanish\\"
       Received: \\"Hello World\\" // Uses English"
     `);
   });
@@ -43,7 +43,7 @@ describe('Jest message renderer', () => {
   it('Should render a message for a negated passed test', async () => {
     const message = renderMessage('jest', {
       content: 'Hello World',
-      assertion: 'Use English',
+      requirement: 'Use English',
       assessment: 'Uses English',
       pass: true,
       name: 'toDefinitely',
@@ -51,9 +51,9 @@ describe('Jest message renderer', () => {
     });
     const plain = stripAnsi(message);
     expect(plain).toMatchInlineSnapshot(`
-      "expect(received).not.toDefinitely(assertion) // Fails if assertion is fulfilled
+      "expect(received).not.toDefinitely(requirement) // Fails if requirement is fulfilled
 
-      Assertion: \\"Use English\\"
+      Requirement: \\"Use English\\"
       Received: \\"Hello World\\" // Uses English"
     `);
   });
@@ -61,7 +61,7 @@ describe('Jest message renderer', () => {
   it('Should render a message for a failed test', async () => {
     const message = renderMessage('jest', {
       content: 'Hello World',
-      assertion: 'Use Spanish',
+      requirement: 'Use Spanish',
       assessment: 'Uses English',
       pass: false,
       name: 'toDefinitely',
@@ -69,9 +69,9 @@ describe('Jest message renderer', () => {
     });
     const plain = stripAnsi(message);
     expect(plain).toMatchInlineSnapshot(`
-      "expect(received).not.toDefinitely(assertion) // Fails if assertion is fulfilled
+      "expect(received).not.toDefinitely(requirement) // Fails if requirement is fulfilled
 
-      Assertion: \\"Use Spanish\\"
+      Requirement: \\"Use Spanish\\"
       Received: \\"Hello World\\" // Uses English"
     `);
   });
