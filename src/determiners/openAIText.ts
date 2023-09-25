@@ -12,9 +12,9 @@ export function makeOpenAITextDeterminer(
 ): Determiner {
   const complete = makeOpenAITextCompleter(openai, options);
 
-  const determiner: Determiner = async ({ rule, content }) => {
+  const determiner: Determiner = async ({ assertion, content }) => {
     const prompt = renderPrompt({
-      rule,
+      assertion,
       content,
       additionalExamples: options.examples,
     });

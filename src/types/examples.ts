@@ -1,5 +1,5 @@
 export type ExampleInput = {
-  rule: string;
+  assertion: string;
   content: string;
 };
 

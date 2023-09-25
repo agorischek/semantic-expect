@@ -18,7 +18,7 @@ test('Compliment generator', async () => {
 
   // Provide a rule that must be followed
   // Be sure to `await` the assertion!
-  await expect(compliment).toHeed('Be positive');
+  await expect(compliment).toDefinitely('Be positive');
 });
 ```
 
@@ -77,10 +77,10 @@ separate setup file. See
 and [Vitest `setupFiles` configuration](https://vitest.dev/config/#setupfiles)
 for further details.
 
-## Matchers
+## Matcher
 
-Semantic Expect provides a `toHeed` matcher, which assesses whether input
-content follows a particular rule. The input content itself will typically come
+Semantic Expect provides the `toDefinitely` matcher, which assesses whether
+input content meets some assertion. The input content itself will typically come
 from a non-deterministic process, such as an LLM or other generative AI
 technology, and thus can't be checked for equivalence with a hardcoded value
 using a traditional matcher like `toBe`.
@@ -90,29 +90,28 @@ test('ELI5 generation', async () => {
   const content = await llm.prompt(
     "Explain quantum physics like I'm 5 years old",
   );
-  await expect(content).toHeed('Avoid technical jargon');
+  await expect(content).toDefinitely('avoid technical jargon');
 });
 ```
 
 **Note:** You **_must_** `await` the assertion, since the model call is
 asynchronous. If you don't, the test will always pass!
 
-If the content does not heed the rule, `toHeed` will provide a message
-explaining why:
+If the content does not fulfill the assertion, the matcher will provide a
+message explaining why:
 
 > 'Quantum physics uses wave-particle duality, superposition, and entanglement
-> to describe the behavior of matter and energy' should heed rule 'Avoid
-> technical jargon' (Mentions wave-particle duality, superposition, and
-> entanglement)
+> to describe the behavior of matter and energy' should 'Avoid technical jargon'
+> (Mentions wave-particle duality, superposition, and entanglement)
 
-The `toHeed` matcher can also be negated using `not`:
+The `toDefinitely` matcher can also be negated using `not`:
 
 ```ts
 test('Translation', async () => {
   const content = await llm.prompt(
     "Say 'Hello World' in a random other language",
   );
-  await expect(content).not.toHeed('Use English');
+  await expect(content).not.toDefinitely('Use English');
 });
 ```
 
@@ -166,7 +165,7 @@ Additional examples are registered when you create your matchers:
 const matchers = makeOpenAIMatchers(client, {
   examples: [
     {
-      rule: 'Be professional',
+      assertion: 'Be professional',
       content: "What's up?? 🤪",
       assessment: 'Uses casual language',
       pass: false,
@@ -182,7 +181,7 @@ note that you may eventually run up against token limits imposed by your model.
 
 - Support LLM providers other than OpenAI
 - Support running a generator multiple times (e.g.
-  `expect(randomCompliment).toHeedTimes("Be nice", 5)`)
+  `expect(randomCompliment).toDefinitelyTimes("Be nice", 5)`)
 - Message formats for additional test runners, and fully custom format function
 - Test coverage
 - Docs

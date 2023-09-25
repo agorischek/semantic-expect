@@ -5,11 +5,11 @@ import { renderMessages } from '../messages.js';
 describe('Message rendering', () => {
   it('Should render messages', () => {
     const details = {
-      rule: 'Use French',
+      assertion: 'Use French',
       content: 'Bonjour',
       additionalExamples: [
         {
-          rule: 'Use Spanish',
+          assertion: 'Use Spanish',
           content: 'Hola',
           assessment: 'Uses Spanish',
           pass: true,

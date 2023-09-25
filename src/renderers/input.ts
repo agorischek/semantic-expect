@@ -2,7 +2,7 @@ import { ExampleInput } from '../types/examples.js';
 import { OpenAIMessage } from '../types/messages.js';
 
 export function renderInput(input: ExampleInput): string {
-  const rendered = `Content: ${input.content}\nRule: ${input.rule}`;
+  const rendered = `Content: ${input.content}\nAssertion: ${input.assertion}`;
   return rendered;
 }
 
