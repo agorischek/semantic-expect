@@ -4,7 +4,7 @@ import { Result } from './results.js';
 export type Matcher = (recieved: string, expected: string) => Promise<Result>;
 
 export type Matchers = {
-  toHeed: Matcher;
+  toDefinitely: Matcher;
 };
 
 export type MatchersFactory<T> = (generator: T, options?: Options) => Matchers;
