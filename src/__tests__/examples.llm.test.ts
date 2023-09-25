@@ -1,21 +1,23 @@
 import { describe, expect, it } from 'vitest';
 
-describe('To Heed Matcher', () => {
+describe('toDefinitely Matcher', () => {
   it('Should detect a color', async () => {
-    await expect('Red and round').toHeed('Include a color');
+    await expect('Red and round').toDefinitely('include a color');
   });
 
   it('Should detect language', async () => {
-    await expect('Hola').toHeed('Use Spanish');
+    await expect('Hola').toDefinitely('be in Spanish');
   });
 
   it('Should count things', async () => {
-    await expect('apples and bananas and cherries').toHeed(
-      'Mention three things',
+    await expect('apples and bananas and cherries').toDefinitely(
+      'mention three things',
     );
   });
 
   it('Should detect grammar', async () => {
-    await expect('This are bad grammar').not.toHeed('Use correct grammar');
+    await expect('This are bad grammar').not.toDefinitely(
+      'use correct grammar',
+    );
   });
 });

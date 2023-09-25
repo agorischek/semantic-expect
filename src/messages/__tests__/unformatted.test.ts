@@ -6,56 +6,56 @@ describe('Unformatted message renderer', () => {
   it('Should render a message for a passed test', async () => {
     const message = renderMessage('unformatted', {
       content: 'Hello World',
-      rule: 'Use English',
+      assertion: 'use English',
       assessment: 'Uses English',
       pass: true,
-      name: 'toHeed',
+      name: 'toDefinitely',
       isNot: false,
     });
     expect(message).toMatchInlineSnapshot(
-      "\"'Hello World' should heed rule 'Use English' (Uses English)\"",
+      "\"'Hello World' should 'use English' (Uses English)\"",
     );
   });
 
   it('Should render a message for a failed test', async () => {
     const message = renderMessage('unformatted', {
       content: 'Hello World',
-      rule: 'Use Spanish',
+      assertion: 'use Spanish',
       assessment: 'Uses English',
       pass: false,
-      name: 'toHeed',
+      name: 'toDefinitely',
       isNot: false,
     });
     expect(message).toMatchInlineSnapshot(
-      "\"'Hello World' should heed rule 'Use Spanish' (Uses English)\"",
+      "\"'Hello World' should 'use Spanish' (Uses English)\"",
     );
   });
 
   it('Should render a message for a negated passed test', async () => {
     const message = renderMessage('unformatted', {
       content: 'Hello World',
-      rule: 'Use English',
+      assertion: 'use English',
       assessment: 'Uses English',
       pass: true,
-      name: 'toHeed',
+      name: 'toDefinitely',
       isNot: true,
     });
     expect(message).toMatchInlineSnapshot(
-      "\"'Hello World' should not heed rule 'Use English' (Uses English)\"",
+      "\"'Hello World' should not 'use English' (Uses English)\"",
     );
   });
 
   it('Should render a message for a failed test', async () => {
     const message = renderMessage('unformatted', {
       content: 'Hello World',
-      rule: 'Use Spanish',
+      assertion: 'use Spanish',
       assessment: 'Uses English',
       pass: false,
-      name: 'toHeed',
+      name: 'toDefinitely',
       isNot: true,
     });
     expect(message).toMatchInlineSnapshot(
-      "\"'Hello World' should not heed rule 'Use Spanish' (Uses English)\"",
+      "\"'Hello World' should not 'use Spanish' (Uses English)\"",
     );
   });
 });

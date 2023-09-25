@@ -9,17 +9,17 @@ export const makeMatchers = (
   format: ResultMessageFormat,
 ) => {
   const matchers = {
-    toHeed: async function (
+    toDefinitely: async function (
       this: MatcherHintOptions,
       received: string,
       expected: string,
     ) {
-      const name = 'toHeed';
+      const name = 'toDefinitely';
       const content = received;
-      const rule = expected;
+      const assertion = expected;
       const { isNot } = this;
-      const { assessment, pass } = await determine({ content, rule });
-      const details = { content, rule, assessment, isNot, name, pass };
+      const { assessment, pass } = await determine({ content, assertion });
+      const details = { content, assertion, assessment, isNot, name, pass };
       const message = () => renderMessage(format, details);
       const result = { pass, message };
       return result;

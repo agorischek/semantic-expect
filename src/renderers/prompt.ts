@@ -4,7 +4,7 @@ import { renderInput } from './input.js';
 import { renderInstructions } from './instructions.js';
 
 export function renderPrompt(details: {
-  rule: string;
+  assertion: string;
   content: string;
   additionalExamples?: Example[];
 }): string {
@@ -12,7 +12,7 @@ export function renderPrompt(details: {
   const prompt = `${renderInstructions()}\n${renderExamples(
     examples,
   )}\n${renderInput({
-    rule: details.rule,
+    assertion: details.assertion,
     content: details.content,
   })}`;
   return prompt;
