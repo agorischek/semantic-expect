@@ -11,9 +11,9 @@ export function makeOpenAIChatDeterminer(
   options: Options = {},
 ): Determiner {
   const complete = makeOpenAIChatCompleter(openai, options);
-  const determine: Determiner = async ({ rule, content }) => {
+  const determine: Determiner = async ({ assertion, content }) => {
     const messages = renderMessages({
-      rule,
+      assertion,
       content,
       additionalExamples: options.examples,
     });

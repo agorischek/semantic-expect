@@ -1,7 +1,7 @@
 import { Options } from '../index.js';
 import { Result } from './results.js';
 
-export type Matcher = (recieved: string, expected: string) => Promise<Result>;
+export type Matcher = (received: string, expected: string) => Promise<Result>;
 
 export type Matchers = {
   toDefinitely: Matcher;
