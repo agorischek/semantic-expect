@@ -18,7 +18,7 @@ test('Compliment generator', async () => {
 
   // Provide a rule that must be followed
   // Be sure to `await` the assertion!
-  await expect(compliment).toDefinitely('be positive');
+  await expect(compliment).toDefinitely('Be positive');
 });
 ```
 
@@ -92,7 +92,7 @@ test('ELI5 generation', async () => {
   const content = await llm.prompt(
     "Explain quantum physics like I'm 5 years old",
   );
-  await expect(content).toDefinitely('avoid technical jargon');
+  await expect(content).toDefinitely('Avoid technical jargon');
 });
 ```
 
@@ -113,7 +113,7 @@ test('Translation', async () => {
   const content = await llm.prompt(
     "Say 'Hello World' in a random other language",
   );
-  await expect(content).not.toDefinitely('use English');
+  await expect(content).not.toDefinitely('Use English');
 });
 ```
 
@@ -125,7 +125,7 @@ test('Translation', async () => {
   const content = await llm.prompt(
     "Say 'Hello World' in a random other language",
   );
-  await expect(content).toDefinitely('not use English');
+  await expect(content).toDefinitely('Not use English');
 });
 ```
 

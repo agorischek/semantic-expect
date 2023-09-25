@@ -14,10 +14,10 @@ export const renderJestMessage = ({
   content,
   assessment,
 }: ResultMessageDetails) => {
-  const comment = isNot ? 'Fails if rule is followed' : undefined;
-  const hint = matcherHint(name, undefined, 'rule', { isNot, comment });
+  const comment = isNot ? 'Fails if assertion is fulfilled' : undefined;
+  const hint = matcherHint(name, undefined, 'assertion', { isNot, comment });
 
-  const expectedLine = `assertion: ${printExpected(assertion)}`;
+  const expectedLine = `Assertion: ${printExpected(assertion)}`;
   const receivedLine = `Received: ${printReceived(content)} ${DIM_COLOR(
     `// ${assessment}`,
   )}`;

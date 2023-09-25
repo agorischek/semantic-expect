@@ -15,9 +15,9 @@ describe('Jest message renderer', () => {
     });
     const plain = stripAnsi(message);
     expect(plain).toMatchInlineSnapshot(`
-      "expect(received).toDefinitely(rule)
+      "expect(received).toDefinitely(assertion)
 
-      assertion: \\"Use English\\"
+      Assertion: \\"Use English\\"
       Received: \\"Hello World\\" // Uses English"
     `);
   });
@@ -33,9 +33,9 @@ describe('Jest message renderer', () => {
     });
     const plain = stripAnsi(message);
     expect(plain).toMatchInlineSnapshot(`
-      "expect(received).toDefinitely(rule)
+      "expect(received).toDefinitely(assertion)
 
-      assertion: \\"Use Spanish\\"
+      Assertion: \\"Use Spanish\\"
       Received: \\"Hello World\\" // Uses English"
     `);
   });
@@ -51,9 +51,9 @@ describe('Jest message renderer', () => {
     });
     const plain = stripAnsi(message);
     expect(plain).toMatchInlineSnapshot(`
-      "expect(received).not.toDefinitely(rule) // Fails if rule is followed
+      "expect(received).not.toDefinitely(assertion) // Fails if assertion is fulfilled
 
-      assertion: \\"Use English\\"
+      Assertion: \\"Use English\\"
       Received: \\"Hello World\\" // Uses English"
     `);
   });
@@ -69,9 +69,9 @@ describe('Jest message renderer', () => {
     });
     const plain = stripAnsi(message);
     expect(plain).toMatchInlineSnapshot(`
-      "expect(received).not.toDefinitely(rule) // Fails if rule is followed
+      "expect(received).not.toDefinitely(assertion) // Fails if assertion is fulfilled
 
-      assertion: \\"Use Spanish\\"
+      Assertion: \\"Use Spanish\\"
       Received: \\"Hello World\\" // Uses English"
     `);
   });
