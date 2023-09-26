@@ -5,15 +5,15 @@ import {
   printReceived,
 } from 'jest-matcher-utils';
 
-import type { ResultMessageDetails } from '../types/results.js';
+import type { DefinitelyResultMessageDetails } from '../types/results.js';
 
-export const renderJestMessage = ({
+export const renderDefinitelyJestMessage = ({
   name,
   isNot,
   requirement,
   content,
   assessment,
-}: ResultMessageDetails) => {
+}: DefinitelyResultMessageDetails) => {
   const comment = isNot ? 'Fails if requirement is fulfilled' : undefined;
   const hint = matcherHint(name, undefined, 'requirement', { isNot, comment });
 

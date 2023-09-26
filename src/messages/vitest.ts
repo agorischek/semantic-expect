@@ -1,11 +1,11 @@
-import type { ResultMessageDetails } from '../types/results.js';
+import type { DefinitelyResultMessageDetails } from '../types/results.js';
 
-export const renderVitestMessage = ({
+export const renderDefinitelyVitestMessage = ({
   isNot,
   requirement,
   content,
   assessment,
-}: ResultMessageDetails) => {
+}: DefinitelyResultMessageDetails) => {
   const message = isNot
     ? `expected '${content}' not to '${requirement}' (${assessment})`
     : `expected '${content}' to '${requirement}' (${assessment})`;

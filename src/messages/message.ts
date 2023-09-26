@@ -1,21 +1,43 @@
 import { ResultMessageFormat } from '../types/options.js';
-import { ResultMessageDetails } from '../types/results.js';
-import { renderJestMessage } from './jest.js';
-import { renderUnformattedMessage } from './unformatted.js';
-import { renderVitestMessage } from './vitest.js';
+import {
+  ConsistentlyResultMessageDetails,
+  DefinitelyResultMessageDetails,
+} from '../types/results.js';
+import { renderDefinitelyJestMessage } from './jest.js';
+import {
+  renderConsistentlyUnformattedMessage,
+  renderDefinitelyUnformattedMessage,
+} from './unformatted.js';
+import { renderDefinitelyVitestMessage } from './vitest.js';
 
-export const renderMessage = (
+export const renderDefinitelyMessage = (
   format: ResultMessageFormat,
-  details: ResultMessageDetails,
+  details: DefinitelyResultMessageDetails,
 ) => {
   switch (format) {
     case 'jest':
-      return renderJestMessage(details);
+      return renderDefinitelyJestMessage(details);
     case 'unformatted':
-      return renderUnformattedMessage(details);
+      return renderDefinitelyUnformattedMessage(details);
     case 'vitest':
-      return renderVitestMessage(details);
+      return renderDefinitelyVitestMessage(details);
     default:
-      return renderUnformattedMessage(details);
+      return renderDefinitelyUnformattedMessage(details);
+  }
+};
+
+export const renderConsistentlyMessage = (
+  format: ResultMessageFormat,
+  details: ConsistentlyResultMessageDetails,
+) => {
+  switch (format) {
+    case 'jest':
+      return renderConsistentlyUnformattedMessage(details);
+    case 'unformatted':
+      return renderConsistentlyUnformattedMessage(details);
+    case 'vitest':
+      return renderConsistentlyUnformattedMessage(details);
+    default:
+      return renderConsistentlyUnformattedMessage(details);
   }
 };

@@ -1,11 +1,12 @@
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
 
-import { renderMessage } from '../message.js';
+import { MatcherName } from '../../types/matchers.js';
+import { renderDefinitelyMessage } from '../message.js';
 
 describe('Jest message renderer', () => {
   it('Should render a message for a passed test', async () => {
-    const message = renderMessage('jest', {
+    const message = renderDefinitelyMessage('jest', {
       content: 'Hello World',
       requirement: 'Use English',
       assessment: 'Uses English',
@@ -23,7 +24,7 @@ describe('Jest message renderer', () => {
   });
 
   it('Should render a message for a failed test', async () => {
-    const message = renderMessage('jest', {
+    const message = renderDefinitelyMessage('jest', {
       content: 'Hello World',
       requirement: 'Use Spanish',
       assessment: 'Uses English',
@@ -41,7 +42,7 @@ describe('Jest message renderer', () => {
   });
 
   it('Should render a message for a negated passed test', async () => {
-    const message = renderMessage('jest', {
+    const message = renderDefinitelyMessage('jest', {
       content: 'Hello World',
       requirement: 'Use English',
       assessment: 'Uses English',
@@ -59,12 +60,12 @@ describe('Jest message renderer', () => {
   });
 
   it('Should render a message for a failed test', async () => {
-    const message = renderMessage('jest', {
+    const message = renderDefinitelyMessage('jest', {
       content: 'Hello World',
       requirement: 'Use Spanish',
       assessment: 'Uses English',
       pass: false,
-      name: 'toDefinitely',
+      name: MatcherName.Definitely,
       isNot: true,
     });
     const plain = stripAnsi(message);

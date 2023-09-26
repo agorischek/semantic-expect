@@ -8,3 +8,8 @@ export type Matchers = {
 };
 
 export type MatchersFactory<T> = (generator: T, options?: Options) => Matchers;
+
+export const enum MatcherName {
+  Definitely = 'toDefinitely',
+  Consistently = 'toConsistently',
+}

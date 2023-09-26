@@ -5,6 +5,7 @@ declare global {
   namespace jest {
     interface Matchers<R> {
       toDefinitely(requirement: string): Promise<R>;
+      toConsistently(requirement: string, count?: number): Promise<R>;
     }
   }
 }

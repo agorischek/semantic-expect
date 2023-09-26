@@ -1,15 +1,16 @@
 import { describe, expect, it } from 'vitest';
 
-import { renderMessage } from '../message.js';
+import { MatcherName } from '../../types/matchers.js';
+import { renderDefinitelyMessage } from '../message.js';
 
 describe('Vitest message renderer', () => {
   it('Should render a message for a passed test', async () => {
-    const message = renderMessage('vitest', {
+    const message = renderDefinitelyMessage('vitest', {
       content: 'Hello World',
       requirement: 'Use English',
       assessment: 'Uses English',
       pass: true,
-      name: 'toDefinitely',
+      name: MatcherName.Definitely,
       isNot: false,
     });
     expect(message).toMatchInlineSnapshot(
@@ -18,7 +19,7 @@ describe('Vitest message renderer', () => {
   });
 
   it('Should render a message for a failed test', async () => {
-    const message = renderMessage('vitest', {
+    const message = renderDefinitelyMessage('vitest', {
       content: 'Hello World',
       requirement: 'Use Spanish',
       assessment: 'Uses English',
@@ -32,7 +33,7 @@ describe('Vitest message renderer', () => {
   });
 
   it('Should render a message for a negated passed test', async () => {
-    const message = renderMessage('vitest', {
+    const message = renderDefinitelyMessage('vitest', {
       content: 'Hello World',
       requirement: 'Use English',
       assessment: 'Uses English',
@@ -46,7 +47,7 @@ describe('Vitest message renderer', () => {
   });
 
   it('Should render a message for a failed test', async () => {
-    const message = renderMessage('vitest', {
+    const message = renderDefinitelyMessage('vitest', {
       content: 'Hello World',
       requirement: 'Use Spanish',
       assessment: 'Uses English',
