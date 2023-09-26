@@ -8,17 +8,14 @@ LLM-based test assertions for Vitest and Jest
 import { OpenAI } from 'openai';
 import { makeOpenAIMatchers } from 'semantic-expect';
 
-import { generateCompliment } from './my-llm-functions.js';
+import { writeJoke } from './my-llm-functions.js';
 
 expect.extend(makeOpenAIMatchers(new OpenAI()));
 
-test('Compliment generator', async () => {
-  // Nondeterministic function, typically powered by generative AI
-  const compliment = await generateCompliment();
-
-  // Provide a rule that must be followed
-  // Be sure to `await` the assertion!
-  await expect(compliment).toDefinitely('Be positive');
+test('Joke writer', async () => {
+  // Submit a non-deterministic content generator to run multiple times,
+  // and assess each output against a requirement
+  await expect(writeJoke).toGenerate('Something funny');
 });
 ```
 
@@ -84,17 +81,26 @@ possible to test a static input against an expected value (e.g. using `toBe`),
 nor is it typically sufficient to generate only one test value for assessment.
 Given these dynamics, Semantic Expect provides a `toGenerate` matcher that
 accepts a generator function, runs it `n` times, and checks every generation
-against a requirement.
+against a requirement:
 
 ```ts
 it('Should write an on-topic joke', async () => {
   const generator = () => writeJoke('about computers');
+  // Be sure to await the assertion
   await expect(generator).toGenerate('A joke about computers', 5);
 });
 ```
 
 **Note:** You **_must_** `await` the assertion, since the model call is
 asynchronous. If you don't, the test will always pass!
+
+If the generated content does not fulfill the requirement, the matcher will
+provide a message explaining why:
+
+```log
+Each generation should be 'A joke about computers' (1 of 3 were not):
+  - 'Why was the electricity feeling so powerful? Because it had a high voltage personality!' (Is a joke about electricity, not computers)
+```
 
 By default, `toGenerate` will run the generator 3 times, however a custom count
 can be specified as the second argument. Of course, it's always possible for a
@@ -104,12 +110,13 @@ eliminate it. The requirements should be kept broad enough that they can
 _definitely_ be met even with the inherent variability of the content being
 tested.
 
-If the generated content does not fulfill the requirement, the matcher will
-provide a message explaining why:
+If the generator being tested doesn't require any parameters, it can be
+submitted on its own, without a wrapping function:
 
-```log
-Each generation should be 'A joke about computers' (1 of 3 were not):
-  - 'Why was the electricity feeling so powerful? Because it had a high voltage personality!' (Is a joke about electricity, not computers)
+```ts
+it('Should write something funny', async () => {
+  await expect(writeJoke).toGenerate('Something funny');
+});
 ```
 
 The `toGenerate` matcher can also be negated using `not`:
