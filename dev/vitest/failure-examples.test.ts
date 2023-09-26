@@ -1,21 +1,11 @@
-import { OpenAI } from 'openai';
-// import { draw } from 'radash';
 import { describe, expect, it } from 'vitest';
+
+import { joke } from '../shared/joke.js';
 
 describe('toConsistently', () => {
   it('Should work', async () => {
-    const openai = new OpenAI();
-    const generator = async () => {
-      const completion = await openai.completions.create({
-        model: 'gpt-3.5-turbo-instruct',
-        prompt: "Here's a color of the rainbow:",
-        temperature: 1,
-        max_tokens: 5,
-      });
-      return completion.choices[0].text.trim().replace('\n', ' ');
-    };
-    // const generator = async () => draw(['a', 'bv']);
-    await expect(generator).toConsistently('Be an animal', 4);
+    const generator = () => joke('about work');
+    await expect(generator).toConsistently('Mention scientists', 5);
   });
 });
 

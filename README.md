@@ -77,7 +77,11 @@ separate setup file. See
 and [Vitest `setupFiles` configuration](https://vitest.dev/config/#setupfiles)
 for further details.
 
-## Matcher
+## Matchers
+
+Semantic Expect provides two matchers: `toDefinitely`, which checks one string
+against a requirement, and `toConsistently`, which runs a generator multiple
+times and checks each generated piece of content.
 
 Semantic Expect provides the `toDefinitely` matcher, which assesses whether
 input content meets some requirement. The input content itself will typically
