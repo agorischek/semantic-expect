@@ -25,3 +25,10 @@ export type ConsistentlyResultMessageDetails = {
   requirement: string;
   iterations: Iteration[];
 };
+
+export type ResultMessageDetails = {
+  name: string;
+  isNot?: boolean;
+  requirement: string;
+  iterations: Iteration[];
+};

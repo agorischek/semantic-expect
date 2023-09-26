@@ -77,59 +77,47 @@ separate setup file. See
 and [Vitest `setupFiles` configuration](https://vitest.dev/config/#setupfiles)
 for further details.
 
-## Matchers
+## Matching
 
-Semantic Expect provides two matchers: `toDefinitely`, which checks one string
-against a requirement, and `toConsistently`, which runs a generator multiple
-times and checks each generated piece of content.
-
-Semantic Expect provides the `toDefinitely` matcher, which assesses whether
-input content meets some requirement. The input content itself will typically
-come from a non-deterministic process, such as an LLM or other generative AI
-technology, and thus can't be checked for equivalence with a hardcoded value
-using a traditional matcher like `toBe`. The requirements should be kept broad
-enough that they can _definitely_ be met even with the inherent variability of
-the content being tested.
+Because generative AI is fundamentally non-deterministic, it's generally not
+possible to test a static input against an expected value (e.g. using `toBe`),
+nor is it typically sufficient to generate only one test value for assessment.
+Given these dynamics, Semantic Expect provides a `toGenerate` matcher that
+accepts a generator function, runs it `n` times, and checks every generation
+against a requirement.
 
 ```ts
-test('ELI5 generation', async () => {
-  const content = await llm.prompt(
-    "Explain quantum physics like I'm 5 years old",
-  );
-  await expect(content).toDefinitely('Avoid technical jargon');
+it('Should write an on-topic joke', async () => {
+  const generator = () => writeJoke('about computers');
+  await expect(generator).toGenerate('A joke about computers', 5);
 });
 ```
 
 **Note:** You **_must_** `await` the assertion, since the model call is
 asynchronous. If you don't, the test will always pass!
 
-If the content does not fulfill the requirement, the matcher will provide a
-message explaining why:
+By default, `toGenerate` will run the generator 3 times, however a custom count
+can be specified as the second argument. Of course, it's always possible for a
+generator to work correctly 10 times and fail on the 11th time, but such is the
+reality of working with LLMs; the best we can do is manage the risk, not
+eliminate it. The requirements should be kept broad enough that they can
+_definitely_ be met even with the inherent variability of the content being
+tested.
 
-> 'Quantum physics uses wave-particle duality, superposition, and entanglement
-> to describe the behavior of matter and energy' should 'Avoid technical jargon'
-> (Mentions wave-particle duality, superposition, and entanglement)
+If the generated content does not fulfill the requirement, the matcher will
+provide a message explaining why:
 
-The `toDefinitely` matcher can also be negated using `not`:
-
-```ts
-test('Translation', async () => {
-  const content = await llm.prompt(
-    "Say 'Hello World' in a random other language",
-  );
-  await expect(content).not.toDefinitely('Use English');
-});
+```log
+Each generation should be 'A joke about computers' (1 of 3 were not):
+  - 'Why was the electricity feeling so powerful? Because it had a high voltage personality!' (Is a joke about electricity, not computers)
 ```
 
-However, it also works (and may be more readable) to include `"not"` in the
-requirement:
+The `toGenerate` matcher can also be negated using `not`:
 
 ```ts
-test('Translation', async () => {
-  const content = await llm.prompt(
-    "Say 'Hello World' in a random other language",
-  );
-  await expect(content).toDefinitely('Not use English');
+it('Should write a work-appropriate joke', async () => {
+  const generator = () => writeJoke('about computers');
+  await expect(generator).not.toGenerate('Anything inappropriate for work', 5);
 });
 ```
 
@@ -169,8 +157,8 @@ Semantic Expect includes general examples by default, however your particular
 use case may benefit from additional guidance. Examples include the following
 properties:
 
-- `requirement`: A statement the response should fulfill, such as
-  `"be professional"`
+- `requirement`: A description of the desired generated content, such as
+  `"A professional greeting"`
 - `content`: The content being submitted for assessment, such as
   `"What's up?? 🤪"`
 - `assessment`: A brief assessment of why the content does or doesn't fulfill
@@ -183,7 +171,7 @@ Additional examples are registered when you create your matchers:
 const matchers = makeOpenAIMatchers(client, {
   examples: [
     {
-      requirement: 'Be professional',
+      requirement: 'A professional greeting',
       content: "What's up?? 🤪",
       assessment: 'Uses casual language',
       pass: false,
@@ -198,8 +186,6 @@ note that you may eventually run up against token limits imposed by your model.
 ## To-do
 
 - Support LLM providers other than OpenAI
-- Support running a generator multiple times (e.g.
-  `expect(randomCompliment).toConsistently("Be nice", 5)`)
 - Message formats for additional test runners, and fully custom format function
 - Test coverage
 - Docs

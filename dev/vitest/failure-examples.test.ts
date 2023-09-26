@@ -1,10 +1,17 @@
 import { describe, expect, it } from 'vitest';
 
-import { joke } from '../shared/joke.js';
+import { writeJoke } from '../shared/writeJoke.js';
 
-describe('toConsistently', () => {
+describe('toGenerate', () => {
   it('Should work', async () => {
-    const generator = () => joke('about work');
+    const generator = () => writeJoke('about the electricity');
+    await expect(generator).toGenerate('A joke about computers', 3);
+  });
+});
+
+describe.skip('toConsistently', () => {
+  it('Should work', async () => {
+    const generator = () => writeJoke('about work');
     await expect(generator).toConsistently('Mention scientists', 5);
   });
 });
