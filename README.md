@@ -5,16 +5,7 @@
 LLM-based test assertions for Vitest and Jest
 
 ```ts
-import { OpenAI } from 'openai';
-import { makeOpenAIMatchers } from 'semantic-expect';
-
-import { writeJoke } from './my-llm-functions.js';
-
-expect.extend(makeOpenAIMatchers(new OpenAI()));
-
 test('Joke writer', async () => {
-  // Submit a non-deterministic content generator to run multiple times,
-  // and assess each output against a requirement
   await expect(writeJoke).toGenerate('Something funny');
 });
 ```
@@ -44,20 +35,20 @@ To use Semantic Expect, you'll need to register custom matchers with your test
 runner. Instructions vary slightly by runner, but generally look like this:
 
 ```ts
-// First, import and instantiate your LLM client
-// If you already instantiate your LLM client elsewhere, you can reuse that client
+// First, import your LLM client and a matcher factory
 import { OpenAI } from 'openai';
+import { makeOpenAIMatchers } from 'semantic-expect';
 
 const model = new OpenAI();
 
 // Second, build the matchers by submitting the LLM client
 const matchers = makeOpenAIMatchers(model);
 
-// Finally, register the matchers
+// Third, register the matchers
 expect.extend(matchers);
 ```
 
-You can typically do all of this on one line if preferred:
+You can typically do multiple steps one line if preferred:
 
 ```ts
 expect.extend(makeOpenAIMatchers(new OpenAI()));
