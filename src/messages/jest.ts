@@ -60,7 +60,7 @@ export const renderJestMessage = ({
       isNot,
       comment,
     });
-    const expectedInfo = `Requirement: ${printExpected(requirement)}`;
+    const expectedInfo = `Expected: not ${printExpected(requirement)}`;
     const receivedInfo = `Received:\n${passes.map(item).join('\n')}`;
     const assembled = `${hint}\n\n${expectedInfo}\n${receivedInfo}`;
     return assembled;
@@ -69,7 +69,7 @@ export const renderJestMessage = ({
     const hint = matcherHint(name, undefined, 'requirement', {
       isNot,
     });
-    const expectedInfo = `Requirement: not ${printExpected(requirement)}`;
+    const expectedInfo = `Expected: ${printExpected(requirement)}`;
     const receivedInfo = `Received:\n${failures.map(item).join('\n')}`;
     const assembled = `${hint}\n\n${expectedInfo}\n${receivedInfo}`;
     return assembled;

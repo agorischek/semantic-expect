@@ -8,6 +8,6 @@ describe('toGenerate', () => {
   });
 
   it.only('Should translate unspecified languages', async () => {
-    await expect(helloWorld).toGenerate('Hello World (in any language)', 6);
+    await expect(helloWorld).not.toGenerate('Hello World (in any language)', 6);
   });
 });
