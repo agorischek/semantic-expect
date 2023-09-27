@@ -185,5 +185,6 @@ note that you may eventually run up against token limits imposed by your model.
 
 - Support LLM providers other than OpenAI
 - Message formats for additional test runners, and fully custom format function
-- Test coverage
+- Test coverage, particularly a suite directly testing determinations (including
+  their wording) in order to trim down the prompt content as much as possible
 - Docs

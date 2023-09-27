@@ -2,6 +2,8 @@ import { OpenAI } from 'openai';
 import { draw } from 'radash';
 import { dedent } from 'ts-dedent';
 
+import { parseList, trimResponse } from './utils.js';
+
 export async function writeJoke(subject?: string) {
   const openai = new OpenAI();
   const resolvedSubject =
@@ -17,11 +19,8 @@ export async function writeJoke(subject?: string) {
     temperature: 0.3,
     max_tokens: 30,
   });
-  const topics = topicsCompletion.choices[0].text
-    .split('\n')
-    .map((item) => item.replace(/^\d+\.\s+/, '').trim())
-    .filter((item) => item.length > 0);
-  console.log(topics);
+  const topics = parseList(topicsCompletion.choices[0].text);
+
   const topic = draw(topics);
   const completion = await openai.completions.create({
     model: 'gpt-3.5-turbo-instruct',
@@ -35,8 +34,6 @@ export async function writeJoke(subject?: string) {
     temperature: 0.4,
     max_tokens: 30,
   });
-  return completion.choices[0].text
-    .trim()
-    .replaceAll('\n\n', ' ')
-    .replaceAll('\n', ' ');
+  const trimmed = trimResponse(completion.choices[0].text);
+  return trimmed;
 }

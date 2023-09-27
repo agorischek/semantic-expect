@@ -1,6 +1,6 @@
 import { MatcherHintOptions } from 'jest-matcher-utils';
 
-import { generationIterationCount } from '../constants.ts/count.js';
+import { generationIterationCount } from '../defaults/count.js';
 import { renderConsistentlyMessage } from '../messages/message.js';
 import { Determiner } from '../types/determiners.js';
 import { Generator } from '../types/generation.js';
@@ -18,7 +18,7 @@ export const makeMatchers = (
       expected: string,
       count: number = generationIterationCount,
     ) {
-      const name = MatcherName.Consistently;
+      const name = MatcherName.Generate;
       const generator = received;
       const requirement = expected;
       const { isNot } = this;
