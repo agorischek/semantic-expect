@@ -1,7 +1,10 @@
 import { MatcherHintOptions } from 'jest-matcher-utils';
 
 import { generationIterationCount } from '../defaults/count.js';
-import { renderConsistentlyMessage } from '../messages/message.js';
+import {
+  // renderConsistentlyMessage,
+  renderMessage,
+} from '../messages/message.js';
 import { Determiner } from '../types/determiners.js';
 import { Generator } from '../types/generation.js';
 import { MatcherName } from '../types/matchers.js';
@@ -33,7 +36,7 @@ export const makeMatchers = (
       });
       console.log(iterations);
       const details = { iterations, requirement, isNot, name };
-      const message = () => renderConsistentlyMessage(format, details);
+      const message = () => renderMessage(format, details);
       const pass = isNot
         ? iterations.filter(({ pass }) => pass).length > 0
         : iterations.filter(({ pass }) => !pass).length === 0;

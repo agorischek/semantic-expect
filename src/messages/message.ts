@@ -4,7 +4,7 @@ import {
   DefinitelyResultMessageDetails,
   ResultMessageDetails,
 } from '../types/results.js';
-import { renderDefinitelyJestMessage } from './jest.js';
+import { renderDefinitelyJestMessage, renderJestMessage } from './jest.js';
 import {
   renderConsistentlyUnformattedMessage,
   renderDefinitelyUnformattedMessage,
@@ -48,9 +48,10 @@ export const renderMessage = (
   format: ResultMessageFormat,
   details: ResultMessageDetails,
 ) => {
+  console.log(format);
   switch (format) {
     case 'jest':
-      return renderUnformattedMessage(details);
+      return renderJestMessage(details);
     case 'unformatted':
       return renderUnformattedMessage(details);
     case 'vitest':

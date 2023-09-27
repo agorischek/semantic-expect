@@ -1,4 +1,4 @@
-import { helloWord } from '../shared/helloWorld.js';
+import { helloWorld } from '../shared/helloWorld.js';
 import { writeJoke } from '../shared/writeJoke.js';
 
 describe('toGenerate', () => {
@@ -7,7 +7,7 @@ describe('toGenerate', () => {
     await expect(generator).toGenerate('A joke about computers', 3);
   });
 
-  it('Should translate unspecified languages', async () => {
-    await expect(helloWord).toGenerate('"Hello World" (in any language)"', 6);
+  it.only('Should translate unspecified languages', async () => {
+    await expect(helloWorld).toGenerate('Hello World (in any language)', 6);
   });
 });

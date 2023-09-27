@@ -65,7 +65,7 @@ describe('Jest message renderer', () => {
       requirement: 'Use Spanish',
       assessment: 'Uses English',
       pass: false,
-      name: MatcherName.Definitely,
+      name: MatcherName.Generate,
       isNot: true,
     });
     const plain = stripAnsi(message);
