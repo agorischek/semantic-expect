@@ -2,8 +2,6 @@
 
 LLM-based test assertions for Vitest and Jest
 
-> This library is in early development and is seeking contributors!
-
 [![Version](https://img.shields.io/npm/v/semantic-expect)](https://www.npmjs.com/package/semantic-expect 'Version')
 [![Workflow](https://img.shields.io/github/actions/workflow/status/agorischek/semantic-expect/.github/workflows/ci.yml)](https://github.com/agorischek/semantic-expect/actions/workflows/.github/workflows/ci.yml 'Workflow')
 [![License](https://img.shields.io/github/license/agorischek/semantic-expect)](https://github.com/agorischek/semantic-expect#readme/blob/main/LICENSE 'License')
@@ -14,6 +12,8 @@ test('Joke writer', async () => {
   await expect(writeJoke).toGenerate('Something funny');
 });
 ```
+
+> This library is in early development and is seeking contributors!
 
 ## Philosophy
 
@@ -106,8 +106,8 @@ By default, `toGenerate` will run the generator 3 times, however a custom count
 can be specified as the second argument. Of course, it's always possible for a
 generator to work correctly 10 times and fail on the 11th time, but such is the
 reality of working with LLMs; the best we can do is manage the risk, not
-eliminate it. The requirements should be kept broad enough that they can \_\_ be
-met even with the inherent variability of the content being tested.
+eliminate it. The requirements should be kept broad enough that they can
+reliably be met even with the inherent variability of the content being tested.
 
 If the generator being tested doesn't require any parameters, it can be
 submitted on its own, without a wrapping function:
