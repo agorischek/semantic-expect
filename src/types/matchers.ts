@@ -1,15 +1,17 @@
 import { Options } from '../index.js';
+import { Generator } from './generation.js';
 import { Result } from './results.js';
 
-export type Matcher = (received: string, expected: string) => Promise<Result>;
-
 export type Matchers = {
-  toDefinitely: Matcher;
+  toGenerate: (
+    received: Generator,
+    expected: string,
+    count?: number,
+  ) => Promise<Result>;
 };
 
-export type MatchersFactory<T> = (generator: T, options?: Options) => Matchers;
+export type MatchersFactory<T> = (backend: T, options?: Options) => Matchers;
 
 export const enum MatcherName {
-  Definitely = 'toDefinitely',
-  Consistently = 'toConsistently',
+  Generate = 'toGenerate',
 }

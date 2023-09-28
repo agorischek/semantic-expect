@@ -1,39 +1,33 @@
 import { Iteration } from '../types/determiners.js';
-import type {
-  ConsistentlyResultMessageDetails,
-  DefinitelyResultMessageDetails,
-} from '../types/results.js';
+import type { ResultMessageDetails } from '../types/results.js';
 
-export const renderDefinitelyUnformattedMessage = ({
-  isNot,
-  requirement,
-  content,
-  assessment,
-}: DefinitelyResultMessageDetails) => {
-  const message = isNot
-    ? `'${content}' should not '${requirement}' (${assessment})`
-    : `'${content}' should '${requirement}' (${assessment})`;
-
-  return message;
-};
-
-export const renderConsistentlyUnformattedMessage = ({
+export const renderUnformattedMessage = ({
   isNot,
   requirement,
   iterations,
-}: ConsistentlyResultMessageDetails) => {
+}: ResultMessageDetails) => {
   const item = (iteration: Iteration) =>
     `  - '${iteration.content}' (${iteration.assessment})`;
 
-  const message = isNot
-    ? `'Generations should not '${requirement}':\n${iterations
-        .filter((iteration) => iteration.pass)
-        .map((iteration) => item(iteration))
-        .join('\n')}`
-    : `Generations should '${requirement}':\n${iterations
-        .filter((iteration) => !iteration.pass)
-        .map((iteration) => item(iteration))
-        .join('\n')}`;
-
-  return message;
+  if (isNot) {
+    const summary = `Content should not be '${requirement}'`;
+    const passes = iterations.filter((iteration) => iteration.pass);
+    if (passes.length === 0) {
+      return summary;
+    } else {
+      const receivedInfo = `Received:\n${passes.map(item).join('\n')}`;
+      const assembled = `${summary}\n\n${receivedInfo}`;
+      return assembled;
+    }
+  } else {
+    const summary = `Content should be '${requirement}'`;
+    const failures = iterations.filter((iteration) => !iteration.pass);
+    if (failures.length === 0) {
+      return summary;
+    } else {
+      const receivedInfo = `Received:\n${failures.map(item).join('\n')}`;
+      const assembled = `${summary}\n\n${receivedInfo}`;
+      return assembled;
+    }
+  }
 };

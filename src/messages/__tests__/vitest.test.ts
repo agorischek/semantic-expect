@@ -1,62 +1,81 @@
 import { describe, expect, it } from 'vitest';
 
 import { MatcherName } from '../../types/matchers.js';
-import { renderDefinitelyMessage } from '../message.js';
+import { renderMessage } from '../message.js';
 
-describe('Vitest message renderer', () => {
+describe('Unformatted message renderer', () => {
   it('Should render a message for a passed test', async () => {
-    const message = renderDefinitelyMessage('vitest', {
-      content: 'Hello World',
-      requirement: 'Use English',
-      assessment: 'Uses English',
-      pass: true,
-      name: MatcherName.Definitely,
+    const message = renderMessage('vitest', {
+      requirement: 'A fruit',
+      name: MatcherName.Generate,
       isNot: false,
+      iterations: [
+        { content: 'Apple', assessment: 'A fruit', pass: true, index: 0 },
+        { content: 'Banana', assessment: 'A fruit', pass: true, index: 1 },
+        { content: 'Cherry', assessment: 'A fruit', pass: true, index: 2 },
+      ],
     });
-    expect(message).toMatchInlineSnapshot(
-      "\"expected 'Hello World' to 'Use English' (Uses English)\"",
-    );
+    expect(message).toMatchInlineSnapshot(`
+      "expected generations to be 'A fruit'"
+    `);
   });
 
   it('Should render a message for a failed test', async () => {
-    const message = renderDefinitelyMessage('vitest', {
-      content: 'Hello World',
-      requirement: 'Use Spanish',
-      assessment: 'Uses English',
-      pass: false,
-      name: 'toDefinitely',
+    const message = renderMessage('vitest', {
+      requirement: 'A fruit',
+      name: MatcherName.Generate,
       isNot: false,
+      iterations: [
+        { content: 'Apple', assessment: 'A fruit', pass: true, index: 0 },
+        { content: 'Carrot', assessment: 'A vegetable', pass: false, index: 1 },
+        { content: 'Calcium', assessment: 'A mineral', pass: false, index: 2 },
+      ],
     });
-    expect(message).toMatchInlineSnapshot(
-      "\"expected 'Hello World' to 'Use Spanish' (Uses English)\"",
-    );
+    expect(message).toMatchInlineSnapshot(`
+      "expected generations to be 'A fruit'
+
+      Received:
+        - 'Carrot' (A vegetable)
+        - 'Calcium' (A mineral)"
+    `);
   });
 
   it('Should render a message for a negated passed test', async () => {
-    const message = renderDefinitelyMessage('vitest', {
-      content: 'Hello World',
-      requirement: 'Use English',
-      assessment: 'Uses English',
-      pass: true,
-      name: 'toDefinitely',
+    const message = renderMessage('vitest', {
+      requirement: 'A fruit',
+      name: MatcherName.Generate,
       isNot: true,
+      iterations: [
+        { content: 'Apple', assessment: 'A fruit', pass: true, index: 0 },
+        { content: 'Banana', assessment: 'A fruit', pass: true, index: 1 },
+        { content: 'Kale', assessment: 'A vegetable', pass: false, index: 2 },
+      ],
     });
-    expect(message).toMatchInlineSnapshot(
-      "\"expected 'Hello World' not to 'Use English' (Uses English)\"",
-    );
+    expect(message).toMatchInlineSnapshot(`
+      "expected generations not to be 'A fruit'
+
+      Received:
+        - 'Apple' (A fruit)
+        - 'Banana' (A fruit)"
+    `);
   });
 
-  it('Should render a message for a failed test', async () => {
-    const message = renderDefinitelyMessage('vitest', {
-      content: 'Hello World',
-      requirement: 'Use Spanish',
-      assessment: 'Uses English',
-      pass: false,
-      name: 'toDefinitely',
+  it('Should render a message for a negated failed test', async () => {
+    const message = renderMessage('vitest', {
+      requirement: 'A fruit',
+      name: MatcherName.Generate,
       isNot: true,
+      iterations: [
+        { content: 'Apple', assessment: 'A fruit', pass: true, index: 0 },
+        { content: 'Carrot', assessment: 'A vegetable', pass: false, index: 1 },
+        { content: 'Calcium', assessment: 'A mineral', pass: false, index: 2 },
+      ],
     });
-    expect(message).toMatchInlineSnapshot(
-      "\"expected 'Hello World' not to 'Use Spanish' (Uses English)\"",
-    );
+    expect(message).toMatchInlineSnapshot(`
+      "expected generations not to be 'A fruit'
+
+      Received:
+        - 'Apple' (A fruit)"
+    `);
   });
 });

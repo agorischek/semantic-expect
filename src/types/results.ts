@@ -10,16 +10,7 @@ export type Result = {
   message: () => string;
 };
 
-export type DefinitelyResultMessageDetails = {
-  name: string;
-  isNot?: boolean;
-  requirement: string;
-  assessment: string;
-  content: string;
-  pass: boolean;
-};
-
-export type ConsistentlyResultMessageDetails = {
+export type ResultMessageDetails = {
   name: string;
   isNot?: boolean;
   requirement: string;
