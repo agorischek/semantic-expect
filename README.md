@@ -1,8 +1,13 @@
 # 🔡🤞 Semantic Expect
 
+LLM-based test assertions for Vitest and Jest
+
 > This library is in early development and is seeking contributors!
 
-LLM-based test assertions for Vitest and Jest
+[![Version](https://img.shields.io/npm/v/semantic-expect)](https://www.npmjs.com/package/semantic-expect 'Version')
+[![Workflow](https://img.shields.io/github/actions/workflow/status/agorischek/semantic-expect/.github/workflows/ci.yml)](https://github.com/agorischek/semantic-expect/actions/workflows/.github/workflows/ci.yml 'Workflow')
+[![License](https://img.shields.io/github/license/agorischek/semantic-expect)](https://github.com/agorischek/semantic-expect#readme/blob/main/LICENSE 'License')
+[![Badges](https://img.shields.io/badge/badges-rolled-white)](https://github.com/agorischek/badge-roll 'Badges')
 
 ```ts
 test('Joke writer', async () => {
