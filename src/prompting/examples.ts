@@ -25,6 +25,12 @@ export const defaultExamples: Example[] = [
     assessment: 'Is a joke about food, not furniture',
     pass: false,
   },
+  {
+    content: 'Hi',
+    requirement: 'Bye',
+    assessment: 'Does not say "Bye"',
+    pass: false,
+  },
   // {
   //   content: 'Bonjour le monde.',
   //   requirement: 'be in English',
