@@ -19,12 +19,14 @@ exactly what we program them to do: Not only are LLMs fundamentally
 non-deterministic, but exhibiting emergent and unprogrammed behaviors is one of
 the key things that makes LLMs so powerful in the first place. Any
 production-grade LLM-powered system will require multiple quality assurance
-mechanisms, including run-time checks and live service monitoring. Semantic
-Expect's role is to shift basic validation left and verify essential behavior
-before shipping. It will always be possible to tweak prompts and eke out
-slightly better responses, but some behaviors may be simply unacceptable to ship
-at all. Semantic Expect lets you write tests for generative features that can be
-added to your continuous integration and deployment processes, alongside
+mechanisms, including run-time checks, live service monitoring, offline
+evaluation, and — ideally — test automation.
+
+Semantic Expect's role is to shift basic validation left and verify essential
+generative behavior before shipping. It will always be possible to tweak prompts
+and eke out better responses, but some behaviors may be simply unacceptable to
+ship at all. Semantic Expect lets you write tests for generative features that
+can be added to your continuous integration and deployment processes, alongside
 end-to-end and integration tests. You should err toward defining rules that
 express _acceptable_ behavior rather than _perfect_ behavior; otherwise your
 tests may exhibit "flakiness" that impedes development velocity. Finding this
