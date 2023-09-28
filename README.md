@@ -99,9 +99,8 @@ By default, `toGenerate` will run the generator 3 times, however a custom count
 can be specified as the second argument. Of course, it's always possible for a
 generator to work correctly 10 times and fail on the 11th time, but such is the
 reality of working with LLMs; the best we can do is manage the risk, not
-eliminate it. The requirements should be kept broad enough that they can
-_definitely_ be met even with the inherent variability of the content being
-tested.
+eliminate it. The requirements should be kept broad enough that they can \_\_ be
+met even with the inherent variability of the content being tested.
 
 If the generator being tested doesn't require any parameters, it can be
 submitted on its own, without a wrapping function:

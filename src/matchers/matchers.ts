@@ -1,14 +1,17 @@
 import { MatcherHintOptions } from 'jest-matcher-utils';
 
 import { generationIterationCount } from '../defaults/count.js';
-import {
-  // renderConsistentlyMessage,
-  renderMessage,
-} from '../messages/message.js';
+import { renderMessage } from '../messages/message.js';
 import { Determiner } from '../types/determiners.js';
 import { Generator } from '../types/generation.js';
 import { MatcherName } from '../types/matchers.js';
 import { ResultMessageFormat } from '../types/options.js';
+import {
+  determineMultiple,
+  generateMultiple,
+  mapDeterminations,
+  resolvePass,
+} from './logic.js';
 
 export const makeMatchers = (
   determine: Determiner,
@@ -25,20 +28,16 @@ export const makeMatchers = (
       const generator = received;
       const requirement = expected;
       const { isNot } = this;
-      const generations = await Promise.all(
-        Array.from({ length: count }, () => generator()),
+      const generations = await generateMultiple(generator, count);
+      const determinations = await determineMultiple(
+        requirement,
+        generations,
+        determine,
       );
-      const determinations = await Promise.all(
-        generations.map((content) => determine({ content, requirement })),
-      );
-      const iterations = determinations.map(({ assessment, pass }, index) => {
-        return { content: generations[index], assessment, pass, index };
-      });
+      const iterations = mapDeterminations(determinations, generations);
       const details = { iterations, requirement, isNot, name };
       const message = () => renderMessage(format, details);
-      const pass = isNot
-        ? iterations.filter(({ pass }) => pass).length > 0
-        : iterations.filter(({ pass }) => !pass).length === 0;
+      const pass = resolvePass(isNot, iterations);
       const result = { pass, message };
       return result;
     },
