@@ -1,62 +1,79 @@
 import { describe, expect, it } from 'vitest';
 
 import { MatcherName } from '../../types/matchers.js';
-import { renderDefinitelyMessage } from '../message.js';
+import { renderMessage } from '../message.js';
 
 describe('Unformatted message renderer', () => {
   it('Should render a message for a passed test', async () => {
-    const message = renderDefinitelyMessage('unformatted', {
-      content: 'Hello World',
-      requirement: 'Use English',
-      assessment: 'Uses English',
-      pass: true,
-      name: 'toDefinitely',
+    const message = renderMessage('unformatted', {
+      requirement: 'A fruit',
+      name: MatcherName.Generate,
       isNot: false,
+      iterations: [
+        { content: 'Apple', assessment: 'A fruit', pass: true, index: 0 },
+        { content: 'Banana', assessment: 'A fruit', pass: true, index: 1 },
+        { content: 'Cherry', assessment: 'A fruit', pass: true, index: 2 },
+      ],
     });
-    expect(message).toMatchInlineSnapshot(
-      "\"'Hello World' should 'Use English' (Uses English)\"",
-    );
+    expect(message).toMatchInlineSnapshot('"Content should be \'A fruit\'"');
   });
 
   it('Should render a message for a failed test', async () => {
-    const message = renderDefinitelyMessage('unformatted', {
-      content: 'Hello World',
-      requirement: 'Use Spanish',
-      assessment: 'Uses English',
-      pass: false,
-      name: 'toDefinitely',
+    const message = renderMessage('unformatted', {
+      requirement: 'A fruit',
+      name: MatcherName.Generate,
       isNot: false,
+      iterations: [
+        { content: 'Apple', assessment: 'A fruit', pass: true, index: 0 },
+        { content: 'Carrot', assessment: 'A vegetable', pass: false, index: 1 },
+        { content: 'Calcium', assessment: 'A mineral', pass: false, index: 2 },
+      ],
     });
-    expect(message).toMatchInlineSnapshot(
-      "\"'Hello World' should 'Use Spanish' (Uses English)\"",
-    );
+    expect(message).toMatchInlineSnapshot(`
+      "Content should be 'A fruit'
+
+      Received:
+        - 'Carrot' (A vegetable)
+        - 'Calcium' (A mineral)"
+    `);
   });
 
   it('Should render a message for a negated passed test', async () => {
-    const message = renderDefinitelyMessage('unformatted', {
-      content: 'Hello World',
-      requirement: 'Use English',
-      assessment: 'Uses English',
-      pass: true,
-      name: 'toDefinitely',
+    const message = renderMessage('unformatted', {
+      requirement: 'A fruit',
+      name: MatcherName.Generate,
       isNot: true,
+      iterations: [
+        { content: 'Apple', assessment: 'A fruit', pass: true, index: 0 },
+        { content: 'Banana', assessment: 'A fruit', pass: true, index: 1 },
+        { content: 'Kale', assessment: 'A vegetable', pass: false, index: 2 },
+      ],
     });
-    expect(message).toMatchInlineSnapshot(
-      "\"'Hello World' should not 'Use English' (Uses English)\"",
-    );
+    expect(message).toMatchInlineSnapshot(`
+      "Content should not be 'A fruit'
+
+      Received:
+        - 'Apple' (A fruit)
+        - 'Banana' (A fruit)"
+    `);
   });
 
-  it('Should render a message for a failed test', async () => {
-    const message = renderDefinitelyMessage('unformatted', {
-      content: 'Hello World',
-      requirement: 'Use Spanish',
-      assessment: 'Uses English',
-      pass: false,
-      name: MatcherName.Definitely,
+  it('Should render a message for a negated failed test', async () => {
+    const message = renderMessage('unformatted', {
+      requirement: 'A fruit',
+      name: MatcherName.Generate,
       isNot: true,
+      iterations: [
+        { content: 'Apple', assessment: 'A fruit', pass: true, index: 0 },
+        { content: 'Carrot', assessment: 'A vegetable', pass: false, index: 1 },
+        { content: 'Calcium', assessment: 'A mineral', pass: false, index: 2 },
+      ],
     });
-    expect(message).toMatchInlineSnapshot(
-      "\"'Hello World' should not 'Use Spanish' (Uses English)\"",
-    );
+    expect(message).toMatchInlineSnapshot(`
+      "Content should not be 'A fruit'
+
+      Received:
+        - 'Apple' (A fruit)"
+    `);
   });
 });

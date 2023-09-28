@@ -1,61 +1,20 @@
 import { ResultMessageFormat } from '../types/options.js';
-import {
-  ConsistentlyResultMessageDetails,
-  DefinitelyResultMessageDetails,
-  ResultMessageDetails,
-} from '../types/results.js';
-import { renderDefinitelyJestMessage, renderJestMessage } from './jest.js';
-import {
-  renderConsistentlyUnformattedMessage,
-  renderDefinitelyUnformattedMessage,
-  renderUnformattedMessage,
-} from './unformatted.js';
-import { renderDefinitelyVitestMessage } from './vitest.js';
-
-export const renderDefinitelyMessage = (
-  format: ResultMessageFormat,
-  details: DefinitelyResultMessageDetails,
-) => {
-  switch (format) {
-    case 'jest':
-      return renderDefinitelyJestMessage(details);
-    case 'unformatted':
-      return renderDefinitelyUnformattedMessage(details);
-    case 'vitest':
-      return renderDefinitelyVitestMessage(details);
-    default:
-      return renderDefinitelyUnformattedMessage(details);
-  }
-};
-
-export const renderConsistentlyMessage = (
-  format: ResultMessageFormat,
-  details: ConsistentlyResultMessageDetails,
-) => {
-  switch (format) {
-    case 'jest':
-      return renderConsistentlyUnformattedMessage(details);
-    case 'unformatted':
-      return renderConsistentlyUnformattedMessage(details);
-    case 'vitest':
-      return renderConsistentlyUnformattedMessage(details);
-    default:
-      return renderConsistentlyUnformattedMessage(details);
-  }
-};
+import { ResultMessageDetails } from '../types/results.js';
+import { renderJestMessage } from './jest.js';
+import { renderUnformattedMessage } from './unformatted.js';
+import { renderVitestMessage } from './vitest.js';
 
 export const renderMessage = (
   format: ResultMessageFormat,
   details: ResultMessageDetails,
 ) => {
-  console.log(format);
   switch (format) {
     case 'jest':
       return renderJestMessage(details);
     case 'unformatted':
       return renderUnformattedMessage(details);
     case 'vitest':
-      return renderUnformattedMessage(details);
+      return renderVitestMessage(details);
     default:
       return renderUnformattedMessage(details);
   }

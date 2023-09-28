@@ -1,45 +1,5 @@
 import { Iteration } from '../types/determiners.js';
-import type {
-  ConsistentlyResultMessageDetails,
-  DefinitelyResultMessageDetails,
-  ResultMessageDetails,
-} from '../types/results.js';
-
-export const renderDefinitelyUnformattedMessage = ({
-  isNot,
-  requirement,
-  content,
-  assessment,
-}: DefinitelyResultMessageDetails) => {
-  const message = isNot
-    ? `'${content}' should not '${requirement}' (${assessment})`
-    : `'${content}' should '${requirement}' (${assessment})`;
-
-  return message;
-};
-
-export const renderConsistentlyUnformattedMessage = ({
-  isNot,
-  requirement,
-  iterations,
-}: ConsistentlyResultMessageDetails) => {
-  const item = (iteration: Iteration) =>
-    `  - '${iteration.content}' (${iteration.assessment})`;
-
-  if (isNot) {
-    const passes = iterations.filter((iteration) => iteration.pass);
-    const summary = `${passes.length} of ${iterations.length} were`;
-    const list = passes.map((iteration) => item(iteration)).join('\n');
-    const message = `'Each generation should not be '${requirement}' (${summary}):\n${list}`;
-    return message;
-  } else {
-    const failures = iterations.filter((iteration) => !iteration.pass);
-    const summary = `${failures.length} of ${iterations.length} were not`;
-    const list = failures.map((iteration) => item(iteration)).join('\n');
-    const message = `'Each generation should be '${requirement}' (${summary}):\n${list}`;
-    return message;
-  }
-};
+import type { ResultMessageDetails } from '../types/results.js';
 
 export const renderUnformattedMessage = ({
   isNot,
@@ -49,15 +9,25 @@ export const renderUnformattedMessage = ({
   const item = (iteration: Iteration) =>
     `  - '${iteration.content}' (${iteration.assessment})`;
 
-  const message = isNot
-    ? `'Content should not '${requirement}':\n${iterations
-        .filter((iteration) => iteration.pass)
-        .map((iteration) => item(iteration))
-        .join('\n')}`
-    : `Content should '${requirement}':\n${iterations
-        .filter((iteration) => !iteration.pass)
-        .map((iteration) => item(iteration))
-        .join('\n')}`;
-
-  return message;
+  if (isNot) {
+    const summary = `Content should not be '${requirement}'`;
+    const passes = iterations.filter((iteration) => iteration.pass);
+    if (passes.length === 0) {
+      return summary;
+    } else {
+      const receivedInfo = `Received:\n${passes.map(item).join('\n')}`;
+      const assembled = `${summary}\n\n${receivedInfo}`;
+      return assembled;
+    }
+  } else {
+    const summary = `Content should be '${requirement}'`;
+    const failures = iterations.filter((iteration) => !iteration.pass);
+    if (failures.length === 0) {
+      return summary;
+    } else {
+      const receivedInfo = `Received:\n${failures.map(item).join('\n')}`;
+      const assembled = `${summary}\n\n${receivedInfo}`;
+      return assembled;
+    }
+  }
 };

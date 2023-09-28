@@ -34,7 +34,6 @@ export const makeMatchers = (
       const iterations = determinations.map(({ assessment, pass }, index) => {
         return { content: generations[index], assessment, pass, index };
       });
-      console.log(iterations);
       const details = { iterations, requirement, isNot, name };
       const message = () => renderMessage(format, details);
       const pass = isNot

@@ -10,6 +10,6 @@ describe('toGenerate', () => {
   });
 
   it('Should generate "Hello World"', async () => {
-    await expect(helloWorld).toGenerate('"Hello World" (in any language)"', 6);
+    await expect(helloWorld).toGenerate('Hello World (in any language)', 6);
   });
 });

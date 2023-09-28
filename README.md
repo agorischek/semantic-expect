@@ -27,7 +27,9 @@ at all. Semantic Expect lets you write tests for generative features that can be
 added to your continuous integration and deployment processes, alongside
 end-to-end and integration tests. You should err toward defining rules that
 express _acceptable_ behavior rather than _perfect_ behavior; otherwise your
-tests may exhibit "flakiness" that impedes development velocity.
+tests may exhibit "flakiness" that impedes development velocity. Finding this
+balance and refining these techniques is perhaps the new art of "semantic
+testing".
 
 ## Setup
 

@@ -6,29 +6,7 @@ import {
 } from 'jest-matcher-utils';
 
 import { Iteration } from '../types/determiners.js';
-import type {
-  DefinitelyResultMessageDetails,
-  ResultMessageDetails,
-} from '../types/results.js';
-
-export const renderDefinitelyJestMessage = ({
-  name,
-  isNot,
-  requirement,
-  content,
-  assessment,
-}: DefinitelyResultMessageDetails) => {
-  const comment = isNot ? 'Fails if requirement is fulfilled' : undefined;
-  const hint = matcherHint(name, undefined, 'requirement', { isNot, comment });
-
-  const expectedLine = `Requirement: ${printExpected(requirement)}`;
-  const receivedLine = `Received: ${printReceived(content)} ${DIM_COLOR(
-    `// ${assessment}`,
-  )}`;
-
-  const assembled = `${hint}\n\n${expectedLine}\n${receivedLine}`;
-  return assembled;
-};
+import type { ResultMessageDetails } from '../types/results.js';
 
 export const renderJestMessage = ({
   name,
@@ -36,54 +14,34 @@ export const renderJestMessage = ({
   requirement,
   iterations,
 }: ResultMessageDetails) => {
-  // const hint = matcherHint(name, undefined, 'requirement', { isNot, comment });
-  // const expectedInfo = `Requirement: ${printExpected(requirement)}`;
-
-  // function renderLine(iteration: Iteration) {
-  //   const { assessment, content } = iteration;
-  //   return `  - ${printReceived(content)} ${DIM_COLOR(`// ${assessment}`)}`;
-  // }
-  // const receivedInfo = `Received:\n${iterations.map(renderLine).join('\n')}`;
-  // // const lines = iterations.map(renderLine).join('\n');
-  // const assembled = `${hint}\n\n${expectedInfo}\n${receivedInfo}`;
-  // return assembled;
-
   const item = (iteration: Iteration) =>
     `  - ${printReceived(iteration.content)} ${DIM_COLOR(
       `// ${iteration.assessment}`,
     )}`;
 
   if (isNot) {
-    const passes = iterations.filter((iteration) => iteration.pass);
-    const comment = 'Fails if requirement is fulfilled';
-    const hint = matcherHint(name, undefined, 'requirement', {
-      isNot,
-      comment,
-    });
+    const hint = matcherHint(name, undefined, 'requirement', { isNot });
     const expectedInfo = `Expected: not ${printExpected(requirement)}`;
-    const receivedInfo = `Received:\n${passes.map(item).join('\n')}`;
-    const assembled = `${hint}\n\n${expectedInfo}\n${receivedInfo}`;
-    return assembled;
+    const passes = iterations.filter((iteration) => iteration.pass);
+    if (passes.length === 0) {
+      const assembled = `${hint}\n\n${expectedInfo}`;
+      return assembled;
+    } else {
+      const receivedInfo = `Received:\n${passes.map(item).join('\n')}`;
+      const assembled = `${hint}\n\n${expectedInfo}\n${receivedInfo}`;
+      return assembled;
+    }
   } else {
-    const failures = iterations.filter((iteration) => !iteration.pass);
-    const hint = matcherHint(name, undefined, 'requirement', {
-      isNot,
-    });
+    const hint = matcherHint(name, undefined, 'requirement', { isNot });
     const expectedInfo = `Expected: ${printExpected(requirement)}`;
-    const receivedInfo = `Received:\n${failures.map(item).join('\n')}`;
-    const assembled = `${hint}\n\n${expectedInfo}\n${receivedInfo}`;
-    return assembled;
+    const failures = iterations.filter((iteration) => !iteration.pass);
+    if (failures.length === 0) {
+      const assembled = `${hint}\n\n${expectedInfo}`;
+      return assembled;
+    } else {
+      const receivedInfo = `Received:\n${failures.map(item).join('\n')}`;
+      const assembled = `${hint}\n\n${expectedInfo}\n${receivedInfo}`;
+      return assembled;
+    }
   }
-
-  const message = isNot
-    ? `'Content should not '${requirement}':\n${iterations
-        .filter((iteration) => iteration.pass)
-        .map((iteration) => item(iteration))
-        .join('\n')}`
-    : `Content should '${requirement}':\n${iterations
-        .filter((iteration) => !iteration.pass)
-        .map((iteration) => item(iteration))
-        .join('\n')}`;
-
-  return message;
 };
