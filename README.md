@@ -8,8 +8,10 @@ LLM-based test assertions for Vitest and Jest
 [![Badges](https://img.shields.io/badge/badges-rolled-white)](https://github.com/agorischek/badge-roll 'Badges')
 
 ```ts
+import { writeRandomJoke } from './my-llm-functions';
+
 test('Joke writer', async () => {
-  await expect(writeJoke).toGenerate('Something funny');
+  await expect(writeRandomJoke).toGenerate('Something funny');
 });
 ```
 

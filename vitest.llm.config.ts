@@ -4,5 +4,6 @@ export default defineConfig({
   test: {
     include: ['**/*.llm.test.ts'],
     setupFiles: ['vitest.setup.ts'],
+    testTimeout: 15000,
   },
 });

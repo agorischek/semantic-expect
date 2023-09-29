@@ -16,7 +16,7 @@ export const defaultExamples: Example[] = [
   {
     content: 'Circles, squares, and triangles.',
     requirement: 'No mention of colors',
-    assessment: 'Does not mention colors',
+    assessment: 'Mentions shapes, but not colors',
     pass: true,
   },
   {
@@ -43,24 +43,24 @@ export const defaultExamples: Example[] = [
   //   assessment: 'Is in French',
   //   pass: true,
   // },
-  // {
-  //   content: "Hello, I'm a programmer. I love TypeScript!",
-  //   requirement: 'be one sentence',
-  //   assessment: 'Is two sentences',
-  //   pass: false,
-  // },
+  {
+    content: "Hello, I'm a programmer. I love TypeScript!",
+    requirement: 'Only one sentence',
+    assessment: 'Is two sentences',
+    pass: false,
+  },
   // {
   //   content: 'Unit testing is awesome.',
   //   requirement: 'be three sentences',
   //   assessment: 'Is one sentence',
   //   pass: false,
   // },
-  // {
-  //   content: 'Yellow',
-  //   requirement: 'be a color',
-  //   assessment: 'Is a color',
-  //   pass: true,
-  // },
+  {
+    content: 'Yellow',
+    requirement: 'A color',
+    assessment: 'Is a color',
+    pass: true,
+  },
   // {
   //   content: 'The ball is round',
   //   requirement: 'include a shape',

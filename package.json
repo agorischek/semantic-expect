@@ -29,7 +29,6 @@
     "expect",
     "jest",
     "llm",
-    "npm",
     "openai",
     "tests",
     "unit",
