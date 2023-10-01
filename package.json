@@ -20,7 +20,7 @@
     "lint": "eslint .",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "vitest run --config vitest.llm.config.ts"
+    "test:llm": "vitest run --config vitest.llm.config.ts"
   },
   "keywords": [
     "ai",

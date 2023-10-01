@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-describe.skip('toGenerate Matcher', () => {
+describe.concurrent('toGenerate Matcher', () => {
   it('Should detect a color', async () => {
     const generator = () => 'Red and round';
     await expect(generator).toGenerate('A color', 1);

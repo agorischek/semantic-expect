@@ -2,7 +2,7 @@ import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    include: ['**/*.llm.test.ts'],
+    include: ['**/*.test.llm.ts'],
     setupFiles: ['vitest.setup.ts'],
     testTimeout: 15000,
     maxConcurrency: 20,
