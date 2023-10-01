@@ -5,5 +5,6 @@ export default defineConfig({
     include: ['**/*.llm.test.ts'],
     setupFiles: ['vitest.setup.ts'],
     testTimeout: 15000,
+    maxConcurrency: 20,
   },
 });
