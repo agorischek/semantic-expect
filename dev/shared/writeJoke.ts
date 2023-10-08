@@ -4,7 +4,7 @@ import { dedent } from 'ts-dedent';
 
 import { parseList, trimResponse } from './utils.js';
 
-export async function writeJoke(subject?: string) {
+export async function writeJoke(subject?: string, temperature: number = 0.3) {
   const openai = new OpenAI();
   const resolvedSubject =
     subject.replace(/^about\s+/i, '') ??
@@ -16,7 +16,7 @@ export async function writeJoke(subject?: string) {
       Here are 6 words related to ${resolvedSubject} as a newline-separated list.
       **DO NOT** include numbers in front of items!
       Items:`,
-    temperature: 0.3,
+    temperature,
     max_tokens: 30,
   });
   const topics = parseList(topicsCompletion.choices[0].text);

@@ -14,7 +14,7 @@
     "dev:jest": "jest --config dev/jest/jest.config.js",
     "dev:unformatted": "vitest --config dev/unformatted/vitest.dev.config.ts",
     "dev:vitest": "vitest --config dev/vitest/vitest.dev.config.ts",
-    "start": "npm t dev",
+    "start": "ts-node --esm dev/run.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",

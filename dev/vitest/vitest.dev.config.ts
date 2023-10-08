@@ -5,5 +5,6 @@ export default defineConfig({
     include: ['dev/vitest/**/*.test.ts'],
     setupFiles: ['vitest.setup.ts'],
     testTimeout: 20000,
+    maxConcurrency: 20,
   },
 });

@@ -10,23 +10,31 @@ export const renderVitestMessage = ({
     `  - '${iteration.content}' (${iteration.assessment})`;
 
   if (isNot) {
-    const summary = `expected generations not to be '${requirement}'`;
+    const summary = `expected every generation to not be '${requirement}'`;
     const passes = iterations.filter((iteration) => iteration.pass);
     if (passes.length === 0) {
       return summary;
     } else {
+      const parenthetical =
+        passes.length === 1
+          ? `(1 of ${iterations.length} was)`
+          : `(${passes.length} of ${iterations.length} were)`;
       const receivedInfo = `Received:\n${passes.map(item).join('\n')}`;
-      const assembled = `${summary}\n\n${receivedInfo}`;
+      const assembled = `${summary} ${parenthetical}\n\n${receivedInfo}`;
       return assembled;
     }
   } else {
-    const summary = `expected generations to be '${requirement}'`;
+    const summary = `expected every generation to be '${requirement}'`;
     const failures = iterations.filter((iteration) => !iteration.pass);
     if (failures.length === 0) {
       return summary;
     } else {
+      const parenthetical =
+        failures.length === 1
+          ? `(1 of ${iterations.length} was not)`
+          : `(${failures.length} of ${iterations.length} were not)`;
       const receivedInfo = `Received:\n${failures.map(item).join('\n')}`;
-      const assembled = `${summary}\n\n${receivedInfo}`;
+      const assembled = `${summary} ${parenthetical}\n\n${receivedInfo}`;
       return assembled;
     }
   }
