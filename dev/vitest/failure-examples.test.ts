@@ -6,6 +6,6 @@ describe('Joke Writer', () => {
   it('Should write jokes about computers', async () => {
     const generator = () => writeJoke('computers');
 
-    await expect(generator).toGenerate('A joke about computers', 10);
+    await expect(generator).toGenerate('A joke about fruits', 10);
   });
 });

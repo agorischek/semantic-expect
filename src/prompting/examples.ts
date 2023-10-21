@@ -44,8 +44,14 @@ export const defaultExamples: Example[] = [
   //   pass: true,
   // },
   {
-    content: "Hello, I'm a programmer. I love TypeScript!",
-    requirement: 'Only one sentence',
+    content: "Hello, I'm a programmer.",
+    requirement: 'Exactly one sentence',
+    assessment: 'Is one sentence',
+    pass: true,
+  },
+  {
+    content: "Hello, I'm a programmer. I love TypeScript.",
+    requirement: 'Exactly one sentence',
     assessment: 'Is two sentences',
     pass: false,
   },
@@ -61,6 +67,7 @@ export const defaultExamples: Example[] = [
     assessment: 'Is a color',
     pass: true,
   },
+
   // {
   //   content: 'The ball is round',
   //   requirement: 'include a shape',
@@ -79,12 +86,12 @@ export const defaultExamples: Example[] = [
   //   assessment: 'Is a compliment',
   //   pass: true,
   // },
-  // {
-  //   content: 'That was terrible...',
-  //   requirement: 'be a compliment',
-  //   assessment: 'Is a criticism',
-  //   pass: false,
-  // },
+  {
+    content: 'That was terrible...',
+    requirement: 'be a compliment',
+    assessment: 'Is a criticism',
+    pass: false,
+  },
   // {
   //   content: 'I look up to you',
   //   requirement: 'be an expression of admiration',
@@ -97,12 +104,12 @@ export const defaultExamples: Example[] = [
   //   assessment: 'Sounds like a pirate',
   //   pass: true,
   // },
-  // {
-  //   content: 'Beep boop beep boop',
-  //   requirement: 'sound like a human',
-  //   assessment: 'Sounds like a robot',
-  //   pass: false,
-  // },
+  {
+    content: 'Beep boop beep boop',
+    requirement: 'A pirate phrase',
+    assessment: 'Is a robot phrase',
+    pass: false,
+  },
   // {
   //   content: 'Bonjour',
   //   requirement: 'use Spanish',
@@ -124,16 +131,16 @@ export const defaultExamples: Example[] = [
   // {
   //   content:
   //     'I was kind of thinking about maybe some day considering running for major.',
-  //   requirement: 'be concise',
+  //   requirement: 'A concise thought',
   //   assessment: 'Is verbose',
   //   pass: false,
   // },
-  // {
-  //   content: 'A',
-  //   requirement: 'use a full sentence',
-  //   assessment: 'Is only one word',
-  //   pass: false,
-  // },
+  {
+    content: 'Apple',
+    requirement: 'A full sentence',
+    assessment: 'Is only one word',
+    pass: false,
+  },
   // {
   //   content: 'I went to the store.',
   //   requirement: 'use a full sentence',
@@ -206,10 +213,10 @@ export const defaultExamples: Example[] = [
   //   assessment: 'Is casual',
   //   pass: true,
   // },
-  // {
-  //   content: "Hey what's up?",
-  //   requirement: 'be professional',
-  //   assessment: 'Is casual',
-  //   pass: false,
-  // },
+  {
+    content: "Hey what's up?",
+    requirement: 'be professional',
+    assessment: 'Is casual',
+    pass: false,
+  },
 ];
