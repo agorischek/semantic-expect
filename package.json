@@ -65,5 +65,8 @@
   "dependencies": {
     "jest-matcher-utils": "^29.7.0",
     "openai": "^4.10.0"
+  },
+  "overrides": {
+    "yaml": "1.10.3"
   }
 }
