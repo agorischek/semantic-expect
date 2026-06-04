@@ -19,7 +19,7 @@ describe('Unformatted message renderer', () => {
     expect(stripAnsi(message)).toMatchInlineSnapshot(`
       "expect(received).toGenerate(requirement)
 
-      Expected: \\"A fruit\\""
+      Expected: "A fruit""
     `);
   });
 
@@ -37,10 +37,10 @@ describe('Unformatted message renderer', () => {
     expect(stripAnsi(message)).toMatchInlineSnapshot(`
       "expect(received).toGenerate(requirement)
 
-      Expected: \\"A fruit\\"
+      Expected: "A fruit"
       Received:
-        - \\"Carrot\\" // A vegetable
-        - \\"Calcium\\" // A mineral"
+        - "Carrot" // A vegetable
+        - "Calcium" // A mineral"
     `);
   });
 
@@ -58,10 +58,10 @@ describe('Unformatted message renderer', () => {
     expect(stripAnsi(message)).toMatchInlineSnapshot(`
       "expect(received).not.toGenerate(requirement)
 
-      Expected: not \\"A fruit\\"
+      Expected: not "A fruit"
       Received:
-        - \\"Apple\\" // A fruit
-        - \\"Banana\\" // A fruit"
+        - "Apple" // A fruit
+        - "Banana" // A fruit"
     `);
   });
 
@@ -79,9 +79,9 @@ describe('Unformatted message renderer', () => {
     expect(stripAnsi(message)).toMatchInlineSnapshot(`
       "expect(received).not.toGenerate(requirement)
 
-      Expected: not \\"A fruit\\"
+      Expected: not "A fruit"
       Received:
-        - \\"Apple\\" // A fruit"
+        - "Apple" // A fruit"
     `);
   });
 });
