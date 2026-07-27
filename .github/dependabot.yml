@@ -7,17 +7,28 @@ updates:
       interval: weekly
     cooldown:
       default-days: 7
-    versioning-strategy: lockfile-only
+    versioning-strategy: increase-if-necessary
     open-pull-requests-limit: 5
     groups:
-      routine-updates:
+      development-routine:
+        dependency-type: development
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
+      production-resolutions:
+        dependency-type: production
         patterns:
           - '*'
         update-types:
           - minor
           - patch
     ignore:
-      - dependency-name: '*'
+      - dependency-name: jest-matcher-utils
+        update-types:
+          - version-update:semver-major
+      - dependency-name: openai
         update-types:
           - version-update:semver-major
 
