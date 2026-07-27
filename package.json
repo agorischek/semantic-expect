@@ -40,7 +40,7 @@
   "devDependencies": {
     "@emnapi/core": "^1.11.3",
     "@emnapi/runtime": "^1.11.3",
-    "@trivago/prettier-plugin-sort-imports": "^4.2.0",
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/jest": "^29.5.5",
     "@typescript-eslint/eslint-plugin": "^6.7.2",
     "@vitest/coverage-v8": "^4.1.8",
