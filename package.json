@@ -66,6 +66,7 @@
     "openai": "^4.10.0"
   },
   "overrides": {
+    "minimatch": "11.0.1",
     "yaml": "1.10.3"
   }
 }
