@@ -39,7 +39,7 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
-    "@eslint/markdown": "^8.0.3",
+    "@eslint/markdown": "^9.0.0",
     "@emnapi/core": "^1.11.3",
     "@emnapi/runtime": "^1.11.3",
     "@swc/core": "^1.15.46",
