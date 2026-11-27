@@ -46,7 +46,7 @@
     "@swc/jest": "^0.2.39",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/jest": "^30.0.0",
-    "@vitest/coverage-v8": "^4.1.8",
+    "@vitest/coverage-v8": "^5.0.3",
     "badge-roll": "^0.1.0",
     "dotenv": "^18.0.3",
     "eslint": "^10.8.0",
@@ -59,7 +59,7 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2",
     "typescript-eslint": "^8.65.0",
-    "vitest": "^4.1.8"
+    "vitest": "^5.0.3"
   },
   "dependencies": {
     "jest-matcher-utils": "^29.7.0",
